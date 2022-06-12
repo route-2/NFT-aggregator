@@ -68,7 +68,7 @@ const Homepage =()=>{
             {/* <Box justifyContent={"center"} pt={"15%"} alignItems={"center"} textAlign={'start'} flex={"1"} height={"100vh"} bgGradient='linear(to-bl, #0A0081, #000000)'>
                
             </Box> */}
-            <Flex pl={"20px"}> 
+            <Flex pl={"200px"} > 
         <ButtonGroup pt={'20px'} pr={"20px"}  >
                 <a href='../../Homepage' ><Button variant={"ghost"} fontSize={"xl"} textColor={"white"} colorScheme={"whiteAlpha"}>Home</Button></a>
                 <a href='../../ExplorePage' ><Button variant={"ghost"} fontSize={"xl"} textColor={"white"} colorScheme={"whiteAlpha"}>Explore</Button></a>

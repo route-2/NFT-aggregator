@@ -1,4 +1,4 @@
-import { Flex,Box } from '@chakra-ui/react';
+import { Flex,Box, } from '@chakra-ui/react';
 import * as React from 'react';
 import { Button, ButtonGroup } from '@chakra-ui/react'
 import NotConnectedModal from './NotConnectedModal';
@@ -14,8 +14,8 @@ const Navbar=() =>{
       } = useMetamask()
     return(
        
-        <Flex px={"20px"} py={"15px"}  flexDirection={"row"}  width={"100vw"} bg={'transparent'}>
-            <Box > 
+        <Flex px={"20px"} py={"15px"} justifyContent={"flex-end"} flexDirection={"row"} color={"white"} width={"100vw"} mt={"20px"} bg={'transparent'}  >
+            <Box  > 
             
             
             <ButtonGroup >

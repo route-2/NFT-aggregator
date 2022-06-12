@@ -1,5 +1,7 @@
-import { Box, Divider, Flex, Text } from "@chakra-ui/react";
+import { Box, Divider, Flex, Input, Text } from "@chakra-ui/react";
 import * as React from "react";
+
+
 import { useMetamask } from "./api/components/context/metamsk.context";
 import Navbar from "./api/components/Navbar";
 
@@ -8,44 +10,12 @@ const ExplorePage = () => {
 
   return (
     <>
-      <Navbar />
-      <Flex
-        flexDirection={"row"}
-        bgColor={"black"}
-        height={"100vh"}
-        width={"100vw"}
-      >
-        <Box textAlign={"start"} width={"40%"} height={"100vh"}>
-          <Box
-            ml={"20px"}
-            mt={"30px"}
-            width={"80%"}
-            height={"fit-content"}
-            padding={"20px"}
-            bgColor={"#171717"}
-            borderRadius={"20px"}
-            borderColor={"gray"}
-            borderWidth={"1.5px"}
-          >
-            <Text color={"white"} fontSize={"xl"} fontWeight={"bold"}>
-              Your Profile
-            </Text>
-            <Text mb={"10px"} color={"white"} mt={"10px"}>
-              {walletAddress}
-            </Text>
-            <Divider />
-            <Text
-              color={"white"}
-              mt={"10px"}
-              fontWeight={"semibold"}
-              fontSize={"20px"}
-            >
-              Balance : &nbsp; {balance}
-            </Text>
-          </Box>
-        </Box>
-        <Box>
-        </Box>
+    <Flex bgGradient='linear(to-br, #0A0081, #000000)'> 
+    
+      <Box rounded={"xl"} justifyContent={"center"} alignItems={'center'} bg={"gray.100"} ml={"80px"} w={"80%"} mt={"40px"} > 
+      <Input  bg={"blue.200"}  rounded={"2xl"} placeholder='Search' w= {"600px"} />
+     </Box>
+
       </Flex>
     </>
   );
