@@ -10,10 +10,10 @@ const ExplorePage = () => {
 
   return (
     <>
-    <Flex height={"100vh"} bgGradient='linear(to-br, #0A0081, #000000)'> 
+    <Flex height={"100vh"} backgroundSize={"cover"}  bgGradient='linear(to-br, #1F0942, #000000)'> 
     
-      <Box rounded={"2xl"} justifyContent={"center"} alignItems={'center'} bg={"gray.100"} padding={"15px"} height={"fit-content"} ml={"80px"} w={"80%"} mt={"40px"} > 
-      <Input  bg={"blue.200"}  rounded={"2xl"} placeholder='Search' w= {"600px"} />
+      <Box rounded={"2xl"} justifyContent={"center"} alignItems={'center'} bg={"whiteAlpha.300"} backdropFilter={'auto'} backdropBlur={"2px"} padding={"15px"} height={"fit-content"} ml={"400px"} w={"60%"} mt={"40px"} > 
+      <Input  bg={"purple.200"}  rounded={"2xl"} placeholder='Search' w= {"50%"} ml={"300px"} />
      </Box>
 
       </Flex>
