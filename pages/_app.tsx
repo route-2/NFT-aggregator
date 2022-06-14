@@ -15,9 +15,9 @@ const showNavbar = router.pathname === '/' ? false : true;
   return(
     <MetaMaskProvider>
     <ChakraProvider>
-      {/* {showNavbar && <Navbar/> } */}
-     {/* <Homepage/>
-      <Component {...pageProps} /> */}
+      
+      <Homepage/>
+      <Component {...pageProps} /> 
       <Chain/>
     </ChakraProvider> 
     </MetaMaskProvider>
