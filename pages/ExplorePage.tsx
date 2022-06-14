@@ -1,6 +1,7 @@
 import { Box, Divider, Flex,Button,Image, Input, Text } from "@chakra-ui/react";
 import * as React from "react";
 import SearchBar from './Search'
+import { Icon } from "@chakra-ui/react";
 
 import { useMetamask } from "./api/components/context/metamsk.context";
 import Navbar from "./api/components/Navbar";
@@ -19,7 +20,7 @@ const ExplorePage = () => {
    
             
             
-            <Box flex='1' ml={"60px"} mt={"30px"}>
+            <Box flex='1' ml={"100px"} mt={"30px"}>
               <Box width={"500px"} bg={"whiteAlpha.300"} backdropFilter={'auto'} backdropBlur={"2px"} borderRadius={"20px"}> 
             <Box  width={'200px'}  mt={'100px'}  padding={"20px"} borderRadius={"20px"} bg={"whiteAlpha.100"} backdropFilter={'auto'} backdropBlur={"1px"}>
              <Image src="https://s8.gifyu.com/images/WhatsApp-Video-2022-06-09-at-9.06.07-PM9d0aee11c2a7e0d3.gif" />
@@ -40,8 +41,8 @@ const ExplorePage = () => {
 
             </Box>
             <Box flex='2' mt={"30px"} >
-            <Flex ml={"60%"}>
-             <Box  width={'500px'} mt={'100px'} mr={"80px"} padding={"20px"} borderRadius={"20px"} bg={"whiteAlpha.300"} backdropFilter={'auto'} backdropBlur={"2px"}>
+            <Flex ml={"40%"}>
+             <Box  width={'550px'} mt={'100px'} mr={"80px"} padding={"20px"} borderRadius={"20px"} bg={"whiteAlpha.300"} backdropFilter={'auto'} backdropBlur={"2px"}>
              <Image src="https://s8.gifyu.com/images/WhatsApp-Video-2022-06-09-at-9.06.07-PM9d0aee11c2a7e0d3.gif" />
         </Box>
           </Flex>
