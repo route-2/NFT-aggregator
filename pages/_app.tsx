@@ -7,6 +7,7 @@ import {useRouter} from 'next/router'
 import Homepage from './Homepage'
 import Navbar from './api/components/Navbar'
 import Chain from './Chain'
+import Mint from './Minting'
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -19,6 +20,7 @@ const showNavbar = router.pathname === '/' ? false : true;
       <Homepage/>
       <Component {...pageProps} /> 
       <Chain/>
+      <Mint/>
     </ChakraProvider> 
     </MetaMaskProvider>
   )

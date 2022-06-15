@@ -52,8 +52,8 @@ const Homepage = () => {
           <Link href="./Chain" pl={"70px"} pr={"60px"} variant={"unstyled"} colorScheme={"purple"} color={"white"}  >
             Chain
           </Link>
-          <Link href="./ExplorePage" pl={"70px"} pr={"60px"} variant={"unstyled"} colorScheme={"purple"} color={"white"}  >
-           Create 
+          <Link href="./Mint" pl={"70px"} pr={"60px"} variant={"unstyled"} colorScheme={"purple"} color={"white"}  >
+           Mint 
           </Link> 
 
           <Button pl={"70px"} pr={"60px"} variant={"unstyled"} colorScheme={"purple"} color={"white"}>
