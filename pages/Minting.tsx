@@ -22,7 +22,7 @@ const Mint = () => {
             <Box flex='1' ml={"100px"} mt={"30px"} >
             
              <Box  width={'500px'} mt={'100px'} height={"390px"} mr={"80px"} padding={"20px"} borderRadius={"20px"} bg={"whiteAlpha.300"} backdropFilter={'auto'} backdropBlur={"2px"}>
-            <Text fontFamily={"mono"} fontSize={"2xl"}> Attributes</Text>
+            <Text fontFamily={"mono"} fontSize={"2xl"} color={'white'} > Attributes</Text>
         </Box>
         
       
@@ -32,7 +32,9 @@ const Mint = () => {
             </Box>
             <Box flex='2' mt={"30px"} >
             <Box width={"700px"} mt={"100px"} height={"390px"} bg={"whiteAlpha.300"} backdropFilter={'auto'} backdropBlur={"2px"} ml={"30%"} borderRadius={"20px"}> 
-   
+            <Text ml={'40px'} pt={"20px"} fontFamily={"mono"} fontSize={"2xl"} color={'white'}> Mint Address </Text><Input  mt={"70px"}  bg={"white"} backdropFilter={'auto'} backdropBlur={"2px"} rounded={"2xl"} placeholder='' w= {"50%"} ml={"40%"} />   
+            <Text ml={'40px'} pt={"20px"} fontFamily={"mono"} fontSize={"2xl"} color={'white'}> Mint Address </Text><Input mt={"70px"}  bg={"white"} backdropFilter={'auto'} backdropBlur={"2px"} rounded={"2xl"} placeholder='' w= {"50%"} ml={"40%"} />   
+            <Text ml={'40px'} pt={"20px"} fontFamily={"mono"} fontSize={"2xl"} color={'white'}> Mint Address </Text><Input mt={"70px"}  bg={"white"} backdropFilter={'auto'} backdropBlur={"2px"} rounded={"2xl"} placeholder='' w= {"50%"} ml={"40%"} />   
         
         
         
