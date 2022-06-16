@@ -9,6 +9,8 @@ import {
   Button,
   Stack,
   SimpleGrid,
+  useColorModeValue,
+  Heading,
 } from "@chakra-ui/react";
 
 function Card(props) {
