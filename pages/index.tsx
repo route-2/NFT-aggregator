@@ -15,6 +15,7 @@ import {
 const Home: NextPage = () => {
   return (
     <>
+    <Homepage/>
     </>
   )
 }

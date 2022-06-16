@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 import {
   Heading,
   Menu,
@@ -18,56 +18,56 @@ import {
   Code,
   Box,
   Button,
-} from '@chakra-ui/react'
-import Objects from './Objects'
-import Header from '../Header'
-import { useWeb3 } from './context/web3Context'
-import NetworkDropdown from './NetworkDropdown'
+} from "@chakra-ui/react";
+import Objects from "./Objects";
+import Header from "../Header";
+import { useWeb3 } from "./context/web3Context";
+import NetworkDropdown from "./NetworkDropdown";
 
 function Swaps() {
-  const web3Context = useWeb3()
+  const web3Context = useWeb3();
 
-  const setSwapFrom = web3Context.setSwapFrom
-  const setSwapTo = web3Context.setSwapTo
-  const swapFrom = web3Context.swapFrom
-  const swapTo = web3Context.swapTo
-  const TokenVal = web3Context.selectedTokenAmount
-  const approved = web3Context.approved
-  const deposited = web3Context.deposited
+  const setSwapFrom = web3Context.setSwapFrom;
+  const setSwapTo = web3Context.setSwapTo;
+  const swapFrom = web3Context.swapFrom;
+  const swapTo = web3Context.swapTo;
+  const TokenVal = web3Context.selectedTokenAmount;
+  const approved = web3Context.approved;
+  const deposited = web3Context.deposited;
 
   // const [amount, setAmount] = useState(null)
-  const [totoken, setToToken] = useState('Select Token')
+  const [totoken, setToToken] = useState("Select Token");
   return (
     <>
       <Header />
       <Flex
-        bgGradient='linear(gray.400 0%, gray.200 30%, gray.100 50%)'
-        w='100%'
-        h={'100%'}
-        textAlign={'center'}
+        bgGradient="linear(gray.400 0%, gray.200 30%, gray.100 50%)"
+        w="100%"
+        h={"100%"}
+        textAlign={"center"}
       >
-        <Flex padding={'20px'}></Flex>
-        <Container maxW='2xl' centerContent>
+        <Flex padding={"20px"}></Flex>
+        <Container maxW="2xl" centerContent>
           <Flex>
             <Box
-              borderRadius={'40px'}
-              blur={'6xl'}
-              padding={'40px'}
-              flexDirection={'row'}
-              alignSelf={'center'}
-              width={'55%'}
-              bgColor={'whiteAlpha.400'}
-              mt={'8vh'}
-              ml={'200px'}
-              height={'95%'}
-              boxShadow={'2xl'}
+              borderRadius={"40px"}
+              blur={"6xl"}
+              padding={"40px"}
+              flexDirection={"row"}
+              alignSelf={"center"}
+              width={"55%"}
+              bgColor={"whiteAlpha.400"}
+              mt={"8vh"}
+              ml={"200px"}
+              height={"95%"}
+              boxShadow={"2xl"}
             >
-              <Flex flexDirection={'row'}>
+              <Flex flexDirection={"row"}>
                 <Text
-                  bgGradient='linear(to-l, #009ffd, #2a2a72)'
-                  bgClip='text'
-                  fontSize='5xl'
-                  fontWeight='extrabold'
+                  bgGradient="linear(to-l, #009ffd, #2a2a72)"
+                  bgClip="text"
+                  fontSize="5xl"
+                  fontWeight="extrabold"
                 >
                   SWAP
                 </Text>
@@ -81,58 +81,63 @@ function Swaps() {
                   width={"60vw"}
                   padding={"40px"}
                   mt={"70px"}
-                 
                   borderRadius={"38px"}
                   bgColor={"white"}
-                  boxShadow={'xl'}
-                 
+                  boxShadow={"xl"}
                 >
                   <Flex>
-                    <Flex flexDirection={'column'}>
+                    <Flex flexDirection={"column"}>
                       {/* <label>Select Token</label> */}
-                      <Flex >
-                        <Objects from={true}/>
+                      <Flex>
+                        <Objects from={true} />
                       </Flex>
                     </Flex>
                     <Box>
                       <Select
-                        placeholder='Select a Token'
-                        borderColor={'white'}
-                        color={'black'}
-                        _hover={'none'}
-                        fontSize={'xl'}
-                        fontWeight={'bold'}
-                        width={'100%'}
-                        alignItems={'flex-start'}
-                        alignContent={'flex-start'}
-                        ml={'30%'}
-                        borderRadius={'22px'}
+                        placeholder="Select a Token"
+                        borderColor={"white"}
+                        color={"black"}
+                        _hover={"none"}
+                        fontSize={"xl"}
+                        fontWeight={"bold"}
+                        width={"100%"}
+                        alignItems={"flex-start"}
+                        alignContent={"flex-start"}
+                        ml={"30%"}
+                        borderRadius={"22px"}
                         value={swapFrom}
                         onChange={(e) => {
-                          setSwapFrom(e.target.value)
+                          setSwapFrom(e.target.value);
                         }}
                       >
-                        <option value='ETH'> ETH </option>
-                        <option value='MATIC'> MATIC </option>
-                        <option value='BNP'> BNB </option>
-                        <option value='CRX'>CrossX</option>
+                        <option value="ETH"> ETH </option>
+                        <option value="MATIC"> MATIC </option>
+                        <option value="BNP"> BNB </option>
+                        <option value="CRX">CrossX</option>
                       </Select>
                     </Box>
                   </Flex>
                   <Box>
-                    <Text fontSize={"xl"} fontWeight={'bold'} textAlign={"start"} ml={'13px'} mt={'10%'} mb={'5%'}>
+                    <Text
+                      fontSize={"xl"}
+                      fontWeight={"bold"}
+                      textAlign={"start"}
+                      ml={"13px"}
+                      mt={"10%"}
+                      mb={"5%"}
+                    >
                       Token Balance: {web3Context.selectedTokenAmount}
                     </Text>
                   </Box>
                   <Box>
                     <Stack spacing={3}>
                       <Input
-                        placeholder='$0.0'
+                        placeholder="$0.0"
                         onChange={(e) => web3Context.setAmount(e.target.value)}
-                        borderColor={'gray'}
-                        borderWidth={'3px'}
-                        fontWeight={'bold'}
-                        size='lg'
+                        borderColor={"gray"}
+                        borderWidth={"3px"}
+                        fontWeight={"bold"}
+                        size="lg"
                       />
                       {/* <Text>{amount}</Text> */}
                     </Stack>
@@ -150,12 +155,10 @@ function Swaps() {
                   mt={"70px"}
                   borderRadius={"38px"}
                   bgColor={"white"}
-                  boxShadow={'xl'}
-
-                  
+                  boxShadow={"xl"}
                 >
                   <Flex>
-                    <Flex flexDirection={'column'}>
+                    <Flex flexDirection={"column"}>
                       {/* <label>Select Token</label> */}
                       <Flex>
                         <Objects from={false} />
@@ -163,50 +166,47 @@ function Swaps() {
                     </Flex>
                     <Box>
                       <Select
-                        placeholder='Select a Token'
-                        borderColor={'white'}
-                        color={'black'}
-                        _hover={'none'}
-                        fontSize={'xl'}
-                        fontWeight={'bold'}
-                        width={'100%'}
-                        alignItems={'flex-start'}
-                        alignContent={'flex-start'}
-                        ml={'30%'}
-                        borderRadius={'22px'}
+                        placeholder="Select a Token"
+                        borderColor={"white"}
+                        color={"black"}
+                        _hover={"none"}
+                        fontSize={"xl"}
+                        fontWeight={"bold"}
+                        width={"100%"}
+                        alignItems={"flex-start"}
+                        alignContent={"flex-start"}
+                        ml={"30%"}
+                        borderRadius={"22px"}
                         value={swapTo}
                         onChange={(e) => {
-                          setSwapTo(e.target.value)
+                          setSwapTo(e.target.value);
                         }}
                       >
-                        <option value='ETH'> ETH </option>
-                        <option value='MATIC'> MATIC </option>
-                        <option value='BNP'> BNB </option>
-                        <option value='CRX'>CrossX</option>
+                        <option value="ETH"> ETH </option>
+                        <option value="MATIC"> MATIC </option>
+                        <option value="BNP"> BNB </option>
+                        <option value="CRX">CrossX</option>
                       </Select>
                     </Box>
                   </Flex>
-                  
-                   
-                 
                 </Box>
               </Flex>
               <Box
-                alignItems={'center'}
-                justifyContent={'center'}
-                alignContent={'center'}
-                mt={'5'}
+                alignItems={"center"}
+                justifyContent={"center"}
+                alignContent={"center"}
+                mt={"5"}
               >
                 {approved === null && deposited === null ? (
                   <Button
-                    variant={'solid'}
+                    variant={"solid"}
                     onClick={web3Context.depositAsset}
-                    colorScheme={'twitter'}
+                    colorScheme={"twitter"}
                   >
                     Confirm Swap
                   </Button>
                 ) : (
-                  <Button variant={'solid'} colorScheme={'twitter'}>
+                  <Button variant={"solid"} colorScheme={"twitter"}>
                     {approved === null ? null : approved === false ? (
                       <h1>Approving...</h1>
                     ) : (
@@ -225,6 +225,6 @@ function Swaps() {
         </Container>
       </Flex>
     </>
-  )
+  );
 }
-export default Swaps
+export default Swaps;

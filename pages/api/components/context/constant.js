@@ -4,6 +4,7 @@ export const CHAIN_DICT = {
     97:'Smart Chain - Testnet',
     137: 'Polygon Mainnet',
     80001: 'Polygon Testnet',
+    
   }
   
   export const RPC_DICT = {

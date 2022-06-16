@@ -1,6 +1,6 @@
 import { Flex,Box, } from '@chakra-ui/react';
 import * as React from 'react';
-import { Button, ButtonGroup } from '@chakra-ui/react'
+import { Button, ButtonGroup,Avatar } from '@chakra-ui/react'
 import NotConnectedModal from './NotConnectedModal';
 import { useMetamask } from './context/metamsk.context';
 import ConnectedModal from './ConnectedModal';
@@ -13,9 +13,19 @@ const Navbar=() =>{
         currentWallet,
       } = useMetamask()
     return(
+        <Flex> 
+        <Box flex={"1"} justifyContent={"flex-start"} > 
+        
+        
+        
+        
+        </Box>
+        
        
-        <Flex px={"20px"} py={"15px"} justifyContent={"flex-end"} flexDirection={"row"} color={"white"} width={"100vw"} mt={"20px"} bg={'transparent'}  >
-            <Box  > 
+        
+          
+            <Box flex={"2"} px={"20px"} py={"15px"} justifyContent={"flex-end"} flexDirection={"row"} color={"white"} width={"100vw"} mt={"20px"} bg={'transparent'}  > 
+            
             
             
             <ButtonGroup >
@@ -25,7 +35,9 @@ const Navbar=() =>{
             </ButtonGroup>
             {isWalletConnected && walletAddress && chain && currentWallet ?(<><ConnectedModal/></>):<NotConnectedModal/>}
             </Box>
+       
         </Flex>
+
      
     )
 }
