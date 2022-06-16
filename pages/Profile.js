@@ -20,6 +20,7 @@ import {
   import SearchBar from "./Search";
   import { Icon } from "@chakra-ui/react";
   
+  
   import { useMetamask } from "./api/components/context/metamsk.context";
   import Navbar from "./api/components/Navbar";
   
@@ -279,68 +280,7 @@ import {
       </Box> 
 
 
-      <Box
-        role={'group'}
-        p={6}
-        maxW={'330px'}
-        w={'full'}
-        bg={useColorModeValue('white', 'gray.800')}
-        boxShadow={'2xl'}
-        rounded={'lg'}
-    
-        zIndex={1}
-          >
-  
-        <Box
-          rounded={'lg'}
-          mt={-10}
-          pos={'relative'}
-          height={'230px'}
-         
-          _after={{
-            transition: 'all .3s ease',
-            content: '""',
-            w: 'full',
-            h: 'full',
-            pos: 'absolute',
-            top: 5,
-            left: 0,
-            backgroundImage: `url("https://i.ibb.co/rkcKynm/pexels-steve-johnson-3344073-2nft1.png")`,
-            filter: 'blur(15px)',
-            zIndex: -1,
-            
-          }}
-          _groupHover={{
-            _after: {
-              filter: 'blur(20px)',
-            },
-          }}>
-          <Image
-            rounded={'lg'}
-            height={230}
-            width={282}
-            objectFit={'cover'}
-            src={"https://i.ibb.co/rkcKynm/pexels-steve-johnson-3344073-2nft1.png"}
-          />
-        </Box>
-       
-          <Text pt={"30px"} textAlign={'center'} color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
-            NFT COLLECTION #2535
-          </Text>
-          <Heading pt={"30px"} textAlign={'center'} fontSize={'2xl'} fontFamily={'body'} fontWeight={500}>
-            MONKEY PUNKS
-          </Heading>
-         
-            <Text pt={"30px"} textAlign={'center'} fontWeight={800} fontSize={'xl'}>
-              $57
-            </Text>
-           
-          
-        
-      </Box> 
-      
-      </Stack>
-      
+     </Stack>
 
 
 
