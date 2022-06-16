@@ -7,7 +7,8 @@ import {
   Text,
   Link,
   Button,
-  Stack
+  Stack,
+  SimpleGrid,
 } from "@chakra-ui/react";
 
 function Card(props) {

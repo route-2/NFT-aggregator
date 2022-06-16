@@ -14,18 +14,23 @@ import {
     Stack,
     Heading,
     Hstack,
+    SimpleGrid,
     
   } from "@chakra-ui/react";
   import * as React from "react";
   import SearchBar from "./Search";
   import { Icon } from "@chakra-ui/react";
-  
+  import Card from "./NftCard";
   
   import { useMetamask } from "./api/components/context/metamsk.context";
   import Navbar from "./api/components/Navbar";
   
   const Profile = () => {
     const { provider, walletAddress, balance } = useMetamask();
+//  const Datalist =()=> {
+//     {dataList.map(function (data) {
+//         const { collection, name,image, price } = data;
+//  }
   
     return (
       <>
@@ -278,6 +283,22 @@ import {
           
         
       </Box> 
+
+
+
+
+
+      {/* <SimpleGrid columns={[1, 2, 1, 2]}>
+         
+            
+              <Card
+                key={id}
+                collection={collection}
+                name={name}
+                image={image}
+                price={price}
+              />
+              </SimpleGrid> */}
 
 
      </Stack>
