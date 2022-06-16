@@ -29,15 +29,16 @@ import {
     return (
       <>
         <SearchBar />
+        <Box    height={"100vh"}
+          backgroundSize={"cover"}
+          bgGradient="linear(to-br, #1F0942, #000000)"> 
         
         <Stack
         direction={ 'column' }
       
   spacing={4}
  
-          height={"100vh"}
-          backgroundSize={"cover"}
-          bgGradient="linear(to-br, #1F0942, #000000)"
+         
         >""
         <Center>
          <Box bgImg={"https://i.ibb.co/thGgrny/Rectangle-28profile.png"} justifyItems={"center"}  w={'190vw'} h={'20vh'}  mt={"30px"} mr={'30px'} ml={'30px'}> 
@@ -90,8 +91,11 @@ import {
             
             </Box>
             </Center>
+            </Stack>
           
-
+<Stack  direction={ 'row' }
+      
+      spacing={4} > 
             <Box
         role={'group'}
         p={6}
@@ -103,8 +107,7 @@ import {
     
         zIndex={1}
           >
-        
-       
+  
         <Box
           rounded={'lg'}
           mt={-10}
@@ -156,9 +159,196 @@ import {
 
 
 
-      
+      <Box
+        role={'group'}
+        p={6}
+        maxW={'330px'}
+        w={'full'}
+        bg={useColorModeValue('white', 'gray.800')}
+        boxShadow={'2xl'}
+        rounded={'lg'}
+    
+        zIndex={1}
+          >
+  
+        <Box
+          rounded={'lg'}
+          mt={-10}
+          pos={'relative'}
+          height={'230px'}
+         
+          _after={{
+            transition: 'all .3s ease',
+            content: '""',
+            w: 'full',
+            h: 'full',
+            pos: 'absolute',
+            top: 5,
+            left: 0,
+            backgroundImage: `url("https://i.ibb.co/rkcKynm/pexels-steve-johnson-3344073-2nft1.png")`,
+            filter: 'blur(15px)',
+            zIndex: -1,
+            
+          }}
+          _groupHover={{
+            _after: {
+              filter: 'blur(20px)',
+            },
+          }}>
+          <Image
+            rounded={'lg'}
+            height={230}
+            width={282}
+            objectFit={'cover'}
+            src={"https://i.ibb.co/rkcKynm/pexels-steve-johnson-3344073-2nft1.png"}
+          />
+        </Box>
+       
+          <Text pt={"30px"} textAlign={'center'} color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
+            NFT COLLECTION #2535
+          </Text>
+          <Heading pt={"30px"} textAlign={'center'} fontSize={'2xl'} fontFamily={'body'} fontWeight={500}>
+            MONKEY PUNKS
+          </Heading>
+         
+            <Text pt={"30px"} textAlign={'center'} fontWeight={800} fontSize={'xl'}>
+              $57
+            </Text>
+           
+          
+        
+      </Box> 
+      <Box
+        role={'group'}
+        p={6}
+        maxW={'330px'}
+        w={'full'}
+        bg={useColorModeValue('white', 'gray.800')}
+        boxShadow={'2xl'}
+        rounded={'lg'}
+    
+        zIndex={1}
+          >
+  
+        <Box
+          rounded={'lg'}
+          mt={-10}
+          pos={'relative'}
+          height={'230px'}
+         
+          _after={{
+            transition: 'all .3s ease',
+            content: '""',
+            w: 'full',
+            h: 'full',
+            pos: 'absolute',
+            top: 5,
+            left: 0,
+            backgroundImage: `url("https://i.ibb.co/rkcKynm/pexels-steve-johnson-3344073-2nft1.png")`,
+            filter: 'blur(15px)',
+            zIndex: -1,
+            
+          }}
+          _groupHover={{
+            _after: {
+              filter: 'blur(20px)',
+            },
+          }}>
+          <Image
+            rounded={'lg'}
+            height={230}
+            width={282}
+            objectFit={'cover'}
+            src={"https://i.ibb.co/rkcKynm/pexels-steve-johnson-3344073-2nft1.png"}
+          />
+        </Box>
+       
+          <Text pt={"30px"} textAlign={'center'} color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
+            NFT COLLECTION #2535
+          </Text>
+          <Heading pt={"30px"} textAlign={'center'} fontSize={'2xl'} fontFamily={'body'} fontWeight={500}>
+            MONKEY PUNKS
+          </Heading>
+         
+            <Text pt={"30px"} textAlign={'center'} fontWeight={800} fontSize={'xl'}>
+              $57
+            </Text>
+           
+          
+        
+      </Box> 
+
+
+      <Box
+        role={'group'}
+        p={6}
+        maxW={'330px'}
+        w={'full'}
+        bg={useColorModeValue('white', 'gray.800')}
+        boxShadow={'2xl'}
+        rounded={'lg'}
+    
+        zIndex={1}
+          >
+  
+        <Box
+          rounded={'lg'}
+          mt={-10}
+          pos={'relative'}
+          height={'230px'}
+         
+          _after={{
+            transition: 'all .3s ease',
+            content: '""',
+            w: 'full',
+            h: 'full',
+            pos: 'absolute',
+            top: 5,
+            left: 0,
+            backgroundImage: `url("https://i.ibb.co/rkcKynm/pexels-steve-johnson-3344073-2nft1.png")`,
+            filter: 'blur(15px)',
+            zIndex: -1,
+            
+          }}
+          _groupHover={{
+            _after: {
+              filter: 'blur(20px)',
+            },
+          }}>
+          <Image
+            rounded={'lg'}
+            height={230}
+            width={282}
+            objectFit={'cover'}
+            src={"https://i.ibb.co/rkcKynm/pexels-steve-johnson-3344073-2nft1.png"}
+          />
+        </Box>
+       
+          <Text pt={"30px"} textAlign={'center'} color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
+            NFT COLLECTION #2535
+          </Text>
+          <Heading pt={"30px"} textAlign={'center'} fontSize={'2xl'} fontFamily={'body'} fontWeight={500}>
+            MONKEY PUNKS
+          </Heading>
+         
+            <Text pt={"30px"} textAlign={'center'} fontWeight={800} fontSize={'xl'}>
+              $57
+            </Text>
+           
+          
+        
+      </Box> 
       
       </Stack>
+      
+
+
+
+
+      
+      
+     
+      </Box>
       
         
       </>
