@@ -1,17 +1,20 @@
-import { Box, Divider, Button, Flex, Input, Text } from "@chakra-ui/react";
+import { Box, Divider, Button,Hstack, Flex, Input, Text } from "@chakra-ui/react";
 import * as React from "react";
 import { IconButton } from "@chakra-ui/react";
 const SearchBar = () => {
   return (
     <>
+    <Flex justifyContent={"space-between"}  bgGradient="linear(to-br, #1F0942, #000000)"> 
       <Box
         justifyContent={"center"}
-        alignItems={"center"}
+       
         padding={"15px"}
-        bgGradient="linear(to-br, #1F0942, #000000)"
+       
         height={"fit-content"}
+        flexDirection={'row'}
         w={"100%"}
       >
+      
         <Input
           bg={"whiteAlpha.300"}
           backdropFilter={"auto"}
@@ -21,11 +24,16 @@ const SearchBar = () => {
           w={"50%"}
           ml={"25%"}
         />
-        <Button ml={"170px"} bgGradient="linear(to-l, purple.800, purple.200)">
+        </Box> 
+        <Box>
+        <Button mr={'40px'} mt={'15px'} bgGradient="linear(to-l, purple.800, purple.200)">
           {" "}
           Mint Collection{" "}
         </Button>
+       
       </Box>
+      </Flex>
+     
     </>
   );
 };

@@ -103,7 +103,7 @@ import {
             <Flex direction={"row"} justifyContent={'center'} wrap={"wrap"} width={"182vh"} height={'fit-content'} >
               <Flex direction={"column"} alignItems={"center"} justifyContent={"center"} margin={"10px"} width={"fit-content"} height={"fit-content"} bgColor={"#1F0942"} >
                
-               <Card/>
+               <Card     />
                
 
                 </Flex>
