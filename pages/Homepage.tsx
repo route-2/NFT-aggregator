@@ -74,6 +74,16 @@ const Homepage = () => {
             Chain
           </Link>
           <Link
+            href="./Marketplace"
+            pl={"70px"}
+            pr={"60px"}
+            variant={"unstyled"}
+            colorScheme={"purple"}
+            color={"white"}
+          >
+            Liquid MarketPlace
+          </Link>
+          <Link
             href="./Minting"
             pl={"70px"}
             pr={"60px"}
