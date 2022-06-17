@@ -30,5 +30,45 @@
         "image":"https://i.ibb.co/rkcKynm/pexels-steve-johnson-3344073-2nft1.png",
         "price":"$97"
         
-      }
+      },
+      {
+        "id": "5",
+        "name":"CryptoPunk",
+        "collection": "Long Product",
+        "image":"https://i.ibb.co/rkcKynm/pexels-steve-johnson-3344073-2nft1.png",
+        "price":"$87"
+        
+      },
+      {
+          "id": "6",
+          "name":"Degen",
+          "collection": "Long Product",
+          "image":"https://i.ibb.co/rkcKynm/pexels-steve-johnson-3344073-2nft1.png",
+          "price":"$97"
+          
+        },
+        {
+          "id": "7",
+          "name":"Degen",
+          "collection": "Long Product",
+          "image":"https://i.ibb.co/rkcKynm/pexels-steve-johnson-3344073-2nft1.png",
+          "price":"$97"
+          
+        },
+        {
+          "id": "8",
+          "name":"CryptoPunk",
+          "collection": "Long Product",
+          "image":"https://i.ibb.co/rkcKynm/pexels-steve-johnson-3344073-2nft1.png",
+          "price":"$87"
+          
+        },
+        {
+            "id": "9",
+            "name":"Degen",
+            "collection": "Long Product",
+            "image":"https://i.ibb.co/rkcKynm/pexels-steve-johnson-3344073-2nft1.png",
+            "price":"$97"
+            
+          }
   ]

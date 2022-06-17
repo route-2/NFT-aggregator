@@ -12,7 +12,7 @@ import {
   useColorModeValue,
   Heading,
 } from "@chakra-ui/react";
-
+import Nftdatalist from './Nftdatalist.json'
 function Card(props) {
   const { collection, name,image, price } = props;
 

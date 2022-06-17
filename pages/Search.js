@@ -8,8 +8,8 @@ const SearchBar = () => {
     <>
     <Flex justifyContent={"space-between"} padding={'10px'} bgGradient="linear(to-br, #1F0942, #000000)"> 
     <Box w='70px' h='10'   > 
-    <a href='./Homepage'> 
-    <img
+    <Link href='./Homepage'> 
+    <Image
   
   mt={'10px'}
   ml={"40px"}
@@ -19,7 +19,7 @@ const SearchBar = () => {
   src='https://bit.ly/dan-abramov'
   
 />
-</a>
+</Link>
 
 </Box>
 

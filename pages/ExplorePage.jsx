@@ -16,6 +16,7 @@ import Card from "./NftCard";
 import SearchBar from "./Search";
 import { Icon } from "@chakra-ui/react";
 import Nftdatalist from './Nftdatalist.json'
+import NftCard from './NftCard'
 
 
 import { useMetamask } from "./api/components/context/metamsk.context";
@@ -28,7 +29,7 @@ const ExplorePage = () => {
     <>
       <SearchBar />
       <Flex
-        height={"150vh"}
+        height={"160vh"}
         backgroundSize={"cover"}
         bgGradient="linear(to-br, #1F0942, #000000)"
         justifyContent={'space-between'}
@@ -36,16 +37,12 @@ const ExplorePage = () => {
       
       >
         
-        <Flex mt={'10%'} ml={'10%'} flexDirection={'row'}  justifyContent={'center'}  > 
         
-        <Flex flexDirection={'row'} width={"100vw"} > 
-        <Link href="./Bid"> 
-            
+        <Flex marginTop={"50px"} justifyContent={"center"} wrap={"wrap"} >
         {Nftdatalist.map(({id, name, collection,image,price}) => {
-        return (
-          <>
-          <Flex flexDirection={"row"} width={"100vw"}> 
-          <Box
+        return (<Box marginLeft={"20px"} >
+        <Link href={'./Bid'}> 
+        <Box
     role={'group'}
     p={6}
     maxW={'330px'}
@@ -100,31 +97,17 @@ const ExplorePage = () => {
         <Text pt={"30px"} textAlign={'center'} fontWeight={800} fontSize={'xl'}>
          {price}
         </Text>
-        
        
       
     
   </Box> 
-  </Flex>
-  
+  </Link>
 
-
-
-
-
-          </>
+        </Box>
         );
       })}
-
-        
-       
-        </Link>
-        </Flex>
-        
-        
-       
-
-        </Flex>
+        </Flex>   
+         
         
       </Flex>
     </>
@@ -132,3 +115,4 @@ const ExplorePage = () => {
 };
 
 export default ExplorePage;
+
