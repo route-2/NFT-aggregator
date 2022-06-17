@@ -11,6 +11,7 @@ import {
 import * as React from "react";
 import SearchBar from "./Search";
 import { RiSwapLine } from "react-icons/ri";
+import { useState } from "react";
 
 
 import { useMetamask } from "./api/components/context/metamsk.context";
@@ -18,15 +19,20 @@ import Navbar from "./api/components/Navbar";
 
 const Chain = () => {
   const { provider, walletAddress, balance } = useMetamask();
+  const [swapTo,setSwapTo] = useState('');
+  const [swapFrom,setSwapFrom] = useState('');
+
 
   return (
     <>
       <SearchBar />
       <Flex
-        height={"100vh"}
+        height={"100%"}
         backgroundSize={"cover"}
         bgGradient="linear(to-br, #1F0942, #000000)"
+        wrap={'wrap'}
       >
+        <Flex width ={'50%'}> 
         <Box flex="1" ml={"100px"} mt={"30px"}>
           <Box
             width={"500px"}
@@ -61,6 +67,8 @@ const Chain = () => {
             </Text>
           </Box>
         </Box>
+        </Flex>
+<Flex > 
         <Box flex="2" mt={"30px"}>
           <Box
             width={"500px"}
@@ -104,10 +112,10 @@ const Chain = () => {
                 ml={"35%"}
                 pt={"9%"}
                 borderRadius={"10px"}
-                // value={swapTo}
-                // onChange={(e) => {
-                //   setSwapTo(e.target.value)
-                // }
+                value={swapFrom}
+                onChange={(e) => {
+                  setSwapFrom(e.target.value)
+                }}
               >
                 <option value="ETH"> ETH </option>
                 <option value="MATIC"> MATIC </option>
@@ -134,10 +142,10 @@ const Chain = () => {
                 pt={"9%"}
                 bg={"white"}
                 borderRadius={"10px"}
-                // value={swapTo}
-                // onChange={(e) => {
-                //   setSwapTo(e.target.value)
-                // }
+                value={swapTo}
+                onChange={(e) => {
+                  setSwapTo(e.target.value)
+                }}
               >
                 <option value="ETH"> ETH </option>
                 <option value="MATIC"> MATIC </option>
@@ -154,6 +162,7 @@ const Chain = () => {
             </Box>
           </Box>
         </Box>
+        </Flex>
       </Flex>
     </>
   );

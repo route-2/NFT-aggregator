@@ -1,10 +1,37 @@
-import { Box, Divider, Button,Hstack, Flex, Input, Text } from "@chakra-ui/react";
+import { Box, Divider,Link, Button,AvatarGroup,Avatar,AiOutlineUser,Image, Hstack, Flex, Input, Text } from "@chakra-ui/react";
 import * as React from "react";
 import { IconButton } from "@chakra-ui/react";
+import Homepage from "./Homepage";
 const SearchBar = () => {
+  
   return (
     <>
-    <Flex justifyContent={"space-between"}  bgGradient="linear(to-br, #1F0942, #000000)"> 
+    <Flex justifyContent={"space-between"} padding={'10px'} bgGradient="linear(to-br, #1F0942, #000000)"> 
+    <Box w='70px' h='10'   > 
+    <a href='./Homepage'> 
+    <img
+  borderRadius='20px'
+  mt={'10px'}
+  ml={"40px"}
+  mb={'10px'}
+ 
+
+  src='https://bit.ly/dan-abramov'
+  
+/>
+</a>
+
+</Box>
+
+
+
+
+  
+     
+     
+     
+     
+     
       <Box
         justifyContent={"center"}
        
@@ -29,7 +56,10 @@ const SearchBar = () => {
         <Button mr={'40px'} mt={'15px'} bgGradient="linear(to-l, purple.800, purple.200)">
           {" "}
           Mint Collection{" "}
+         
         </Button>
+        
+        
        
       </Box>
       </Flex>
