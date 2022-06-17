@@ -100,6 +100,7 @@ const ExplorePage = () => {
         <Text pt={"30px"} textAlign={'center'} fontWeight={800} fontSize={'xl'}>
          {price}
         </Text>
+        
        
       
     

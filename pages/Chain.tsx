@@ -127,7 +127,7 @@ const Chain = () => {
                   mt={"40px"}
                   ml={"45%"}
                   src={
-                    "https://i.ibb.co/5nkZB3V/Pngtree-reload-icon-in-trendy-style-4823782.png"
+                    "https://i.ibb.co/HBSPkHZ/icons8-refresh-50.png"
                   }
                 />
               </Box>
