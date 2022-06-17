@@ -19,12 +19,13 @@ const Bid = () => {
       <Flex
         direction={"row"}
         wrap={"wrap"}
-        height={"100%"}
+        height={"150vh"}
+        width={'100vw'}
         backgroundSize={"cover"}
         bgGradient="linear(to-br, #1F0942, #000000)"
       >
         <Flex width={"50%"} >
-        <Box flex="1" ml={"100px"} mt={"30px"}>
+        <Box  ml={"100px"} mt={"30px"}>
           <Box
             width={"500px"}
             mt={"100px"}
@@ -66,7 +67,7 @@ const Bid = () => {
         <Flex width={"50%"} direction={"column"}>
           <Flex direction={"column"}>
             <Flex width={"50%"}> 
-            <Box flex="2" mt={"30px"}>
+            <Box  mt={"30px"}>
           <Box
             width={"500px"}
             mt={"100px"}
@@ -130,7 +131,7 @@ const Bid = () => {
           <Center> 
           <Button mt={'30% '}>
           
-          PLACE BID
+          <img src='https://cryptologos.cc/logos/polygon-matic-logo.svg?v=022' width={"20px"}/> &nbsp; PLACE BID 
            </Button>
            
            </Center> 

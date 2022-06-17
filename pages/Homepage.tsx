@@ -29,7 +29,7 @@ const Homepage = () => {
         backgroundRepeat={"no-repeat"}
         backgroundSize={"cover"}
         width={"100vw"}
-        height={"100vh"}
+        height={"150vh"}
         flexDirection={"column"}
       >
         <Flex
@@ -98,8 +98,8 @@ const Homepage = () => {
           </Box>
         </Flex>
 
-        <Flex flexDirection={"row"}>
-          <Flex width={"50%"} height={"100%"}>
+        <Flex flexDirection={"row"} height={"150vh"} wrap={'wrap'}>
+          <Flex width={"50%"} >
             <Text
               bgGradient="linear(to-l, purple.800, purple.200)"
               bgClip="text"
@@ -126,11 +126,12 @@ const Homepage = () => {
           </Flex>
 
           <Flex
-            flex={"1"}
-            justifyContent={"center"}
-            alignItems={"center"}
-            width={"50%"}
-            height={"100vh"}
+            
+            
+            mt={'90px'}
+            ml={'110px'}
+            
+            
           >
             <Box
               boxShadow="inner"
@@ -138,6 +139,8 @@ const Homepage = () => {
               rounded="md"
               bgGradient="linear(purple.400,purple.100)"
               dropShadow={"md"}
+              width={'fit-content'}
+              height={'fit-content'}
             >
               <Image src="https://s8.gifyu.com/images/WhatsApp-Video-2022-06-09-at-9.06.07-PM9d0aee11c2a7e0d3.gif" />
             </Box>

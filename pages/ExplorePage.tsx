@@ -6,6 +6,7 @@ import {
   Image,
   Input,
   Text,
+  Link,
 } from "@chakra-ui/react";
 import * as React from "react";
 import SearchBar from "./Search";
@@ -21,11 +22,12 @@ const ExplorePage = () => {
     <>
       <SearchBar />
       <Flex
-        height={"100vh"}
+        height={"150vh"}
         backgroundSize={"cover"}
         bgGradient="linear(to-br, #1F0942, #000000)"
       >
         <Box flex="1" ml={"100px"} mt={"30px"}>
+          <Link href={'./Bid'}> 
           <Box
             width={"500px"}
             bg={"whiteAlpha.300"}
@@ -45,6 +47,7 @@ const ExplorePage = () => {
               <Image src="https://s8.gifyu.com/images/WhatsApp-Video-2022-06-09-at-9.06.07-PM9d0aee11c2a7e0d3.gif" />
             </Box>
           </Box>
+          </Link>
           <Box
             width={"500px"}
             bg={"whiteAlpha.300"}

@@ -27,7 +27,7 @@ const Chain = () => {
     <>
       <SearchBar />
       <Flex
-        height={"100%"}
+        height={"200vh"}
         backgroundSize={"cover"}
         bgGradient="linear(to-br, #1F0942, #000000)"
         wrap={'wrap'}
