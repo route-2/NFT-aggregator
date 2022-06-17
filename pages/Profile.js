@@ -15,6 +15,11 @@ import {
     Heading,
     Hstack,
     SimpleGrid,
+    Tabs,
+    Tab,
+    TabList,
+    TabPanel,
+    TabPanels,
     
   } from "@chakra-ui/react";
   import * as React from "react";
@@ -69,88 +74,75 @@ import {
          </Box>
          </Center> 
          <Text fontSize={"3xl"} pt={'20px'} color={"white"} textAlign={'center'}  > MD MOHSIN </Text>
-         <Center> <Box  width={"80%"}
-            mt={"40px"}
-            height={"60px"}
-            bg={"whiteAlpha.300"}
-            backdropFilter={"auto"}
-            backdropBlur={"2px"}
-            borderRadius={"20px"}
-            marginBottom={'20px'}
-            
-            
-          > 
+         
           <Center>
-            <ButtonGroup >
-                <Button variant={"ghost"} color={"white"}  mt={'10px'} >MY ITEMS</Button>
-                <Button variant={"ghost"} color={"white"}  mt={'10px'} >LISTED ITEMS</Button>
-                <Button variant={"ghost"} color={"white"}  mt={'10px'} >AUCTIONS</Button>
-                
-                <Button variant={"ghost"} color={"white"}  mt={'10px'} >OFFERS MADE</Button>
-                
-                <Button variant={"ghost"} color={"white"}  mt={'10px'} >OFFERS RECIEVED</Button>
-                <Button variant={"ghost"} color={"white"} mt={'10px'}>ACTIVITIES</Button>
+          <Tabs isFitted  variant='soft-rounded' colorScheme='purple.100' >
+  <TabList textAlign={'center'} >
+    <Tab>  MY ITEMS </Tab>
+    <Tab>  LISTED ITEMS </Tab>
+    <Tab>  AUCTIONS </Tab>
+    <Tab> OFFERS MADE </Tab>
+    <Tab>  OFFERS RECIEVED </Tab>
+    <Tab>  ACTIVITIES </Tab>
 
-            </ButtonGroup>
-            </Center> 
-           
-            
-            
-            </Box>
-            </Center>
-            </Stack>
-            <Center> 
-            <Flex direction={"row"} justifyContent={'center'} wrap={"wrap"} width={"182vh"} height={'fit-content'} >
+    
+  </TabList>
+
+  <TabPanels color={'white'}>
+
+    <TabPanel>
+    <Flex direction={"row"} justifyContent={'center'} wrap={"wrap"} width={"182vh"} height={'fit-content'} >
               <Flex direction={"column"} alignItems={"center"} justifyContent={"center"} margin={"10px"} width={"fit-content"} height={"fit-content"} bgColor={"#1F0942"} >
                
-               <Card     />
-               
-
-                </Flex>
-                <Flex direction={"column"} alignItems={"center"} justifyContent={"center"} margin={"10px"} width={"fit-content"} height={"fit-content"} bgColor={"#1F0942"} >
-               
-               <Card/>
-               
-
-                </Flex>
-                <Flex direction={"column"} alignItems={"center"} justifyContent={"center"} margin={"10px"} width={"fit-content"} height={"fit-content"} bgColor={"#1F0942"} >
-               
-               <Card/>
-               
-
-                </Flex>
-                <Flex direction={"column"} alignItems={"center"} justifyContent={"center"} margin={"10px"} width={"fit-content"} height={"fit-content"} bgColor={"#1F0942"} >
-               
-               <Card/>
-               
-
-                </Flex>
-                <Flex direction={"column"} alignItems={"center"} justifyContent={"center"} margin={"10px"} width={"fit-content"} height={"fit-content"} bgColor={"#1F0942"} >
-               
-               <Card/>
-               
-
-                </Flex>
-                <Flex direction={"column"} alignItems={"center"} justifyContent={"center"} margin={"10px"} width={"fit-content"} height={"fit-content"} bgColor={"#1F0942"} >
-               
-               <Card/>
-               
-
-                </Flex>
-                <Flex direction={"column"} alignItems={"center"} justifyContent={"center"} margin={"10px"} width={"fit-content"} height={"fit-content"} bgColor={"#1F0942"} >
-               
-               <Card/>
-               
-
-                </Flex>
-                <Flex direction={"column"} alignItems={"center"} justifyContent={"center"} margin={"10px"} width={"fit-content"} height={"fit-content"} bgColor={"#1F0942"} >
-               
-               <Card/>
-               
+            <Card/> 
 
                 </Flex>
               
             </Flex>
+      
+    </TabPanel>
+    <TabPanel>
+    <Flex direction={"row"} justifyContent={'center'} wrap={"wrap"} width={"182vh"} height={'fit-content'} >
+              <Flex direction={"column"} alignItems={"center"} justifyContent={"center"} margin={"10px"} width={"fit-content"} height={"fit-content"} bgColor={"#1F0942"} >
+               
+            <Card/> 
+
+                </Flex>
+              
+            </Flex>
+      
+    </TabPanel>
+    <TabPanel>
+    <Flex direction={"row"} justifyContent={'center'} wrap={"wrap"} width={"182vh"} height={'fit-content'} >
+              <Flex direction={"column"} alignItems={"center"} justifyContent={"center"} margin={"10px"} width={"fit-content"} height={"fit-content"} bgColor={"#1F0942"} >
+               
+            <Card/> 
+
+                </Flex>
+              
+            </Flex>
+      
+    </TabPanel>
+    <TabPanel>
+      <p>one!</p>
+    </TabPanel>
+    <TabPanel>
+      <p>two!</p>
+    </TabPanel>
+    <TabPanel>
+      <p>three!</p>
+    </TabPanel>
+    
+  </TabPanels>
+</Tabs>
+            </Center> 
+           
+            
+            
+            
+            </Stack>
+            <Center> 
+           
             </Center>
       
       

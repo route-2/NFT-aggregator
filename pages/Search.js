@@ -10,7 +10,7 @@ const SearchBar = () => {
     <Box w='70px' h='10'   > 
     <a href='./Homepage'> 
     <img
-  borderRadius='20px'
+  
   mt={'10px'}
   ml={"40px"}
   mb={'10px'}
