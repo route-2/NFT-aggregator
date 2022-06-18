@@ -20,12 +20,14 @@ import {
     TabList,
     TabPanel,
     TabPanels,
+    Link,
     
   } from "@chakra-ui/react";
   import * as React from "react";
   import SearchBar from "./Search";
   import { Icon } from "@chakra-ui/react";
   import Card from "./NftCard";
+  import Nftdatalist from './Nftdatalist.json'
   
   import { useMetamask } from "./api/components/context/metamsk.context";
   import Navbar from "./api/components/Navbar";
@@ -81,10 +83,10 @@ import {
   <TabList textAlign={'center'} >
     <Tab>  MY ITEMS </Tab>
     <Tab>  LISTED ITEMS </Tab>
-    <Tab>  AUCTIONS </Tab>
+    {/* <Tab>  AUCTIONS </Tab>
     <Tab> OFFERS MADE </Tab>
     <Tab>  OFFERS RECIEVED </Tab>
-    <Tab>  ACTIVITIES </Tab>
+    <Tab>  ACTIVITIES </Tab> */}
 
     
   </TabList>
@@ -105,9 +107,16 @@ import {
     <TabPanel>
     <Flex direction={"row"} justifyContent={'center'} wrap={"wrap"} width={"182vh"} height={'fit-content'} >
               <Flex direction={"column"} alignItems={"center"} justifyContent={"center"} margin={"10px"} width={"fit-content"} height={"fit-content"} bgColor={"#1F0942"} >
-               
-            <Card/> 
-
+              <Flex justifyContent={"center"} wrap={"wrap"} >
+        {Nftdatalist.map((nft,index) => {
+        return (  <Link href='./Bid'> <Box marginTop={"50px"}  marginLeft={"20px"} >
+          <Card key={index} singlenft={nft} />
+        </Box>
+        </Link>
+        );
+      })}
+        </Flex>  
+           
                 </Flex>
               
             </Flex>
@@ -117,22 +126,22 @@ import {
     <Flex direction={"row"} justifyContent={'center'} wrap={"wrap"} width={"182vh"} height={'fit-content'} >
               <Flex direction={"column"} alignItems={"center"} justifyContent={"center"} margin={"10px"} width={"fit-content"} height={"fit-content"} bgColor={"#1F0942"} >
                
-            <Card/> 
+              <Flex justifyContent={"center"} wrap={"wrap"} >
+        {Nftdatalist.map((nft,index) => {
+        return (  <Link href='./Bid'> <Box marginTop={"50px"}  marginLeft={"20px"} >
+          <Card key={index} singlenft={nft} />
+        </Box>
+        </Link>
+        );
+      })}
+        </Flex>  
 
                 </Flex>
               
             </Flex>
       
     </TabPanel>
-    <TabPanel>
-      <p>one!</p>
-    </TabPanel>
-    <TabPanel>
-      <p>two!</p>
-    </TabPanel>
-    <TabPanel>
-      <p>three!</p>
-    </TabPanel>
+    
     
   </TabPanels>
 </Tabs>

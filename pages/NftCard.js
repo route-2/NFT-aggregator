@@ -20,9 +20,9 @@ import { useMetamask } from "./api/components/context/metamsk.context";
 
 
 function Card({key,singlenft}) {
-  const { provider, walletAddress, balance } = useMetamask();
-  const [swapTo,setSwapTo] = useState('');
-  const [swapFrom,setSwapFrom] = useState('');
+  // const { provider, walletAddress, balance } = useMetamask();
+  // const [swapTo,setSwapTo] = useState('');
+  // const [swapFrom,setSwapFrom] = useState('');
 
   return (
     <Stack>
@@ -81,14 +81,8 @@ function Card({key,singlenft}) {
         <Text pt={"5px"} textAlign={'center'} fontWeight={800} fontSize={'xl'}>
          {singlenft.price}
         </Text>
+        
         <Center> 
-        <Button mt={'8px'} color='blackAlpha.700' colorScheme='gray' variant='solid'> 
-        
-        BUY NOW
-        
-        </Button>
-        </Center>
-        <Flex color={'black'} >
               <Select
                 placeholder=""
                 borderColor={"purple.200"}
@@ -100,47 +94,18 @@ function Card({key,singlenft}) {
                 
                 pt={"9%"}
                 borderRadius={"10px"}
-                value={swapFrom}
-                onChange={(e) => {
-                  setSwapFrom(e.target.value)
-                }}
+                // value={swapFrom}
+                // onChange={(e) => {
+                //   setSwapFrom(e.target.value)
+                // }}
               >
                 <option value="ETH"> ETH </option>
                 <option value="MATIC"> MATIC </option>
                 <option value="BNP"> BNB </option>
               </Select>
-              <Box>
-                <Image
-                  width={"30px"}
-                  mt={"40px"}
-                  p={'1'}
-                  src={
-                    "https://i.ibb.co/HBSPkHZ/icons8-refresh-50.png"
-                  }
-                />
-              </Box>
-              <Select
-                placeholder=""
-                borderColor={"purple.200"}
-                color={"black"}
-                fontSize={"xl"}
-                fontWeight={"bold"}
-                width={"150px"}
-               
-                pt={"9%"}
-                bg={"purple.100"}
-                borderRadius={"10px"}
-                value={swapTo}
-                onChange={(e) => {
-                  setSwapTo(e.target.value)
-                }}
-              >
-                <option value="ETH"> ETH </option>
-                <option value="MATIC"> MATIC </option>
-                <option value="BNP"> BNB </option>
-              </Select>
+             
               
-            </Flex>
+              </Center>
 
             <Center> 
               <Button
@@ -149,7 +114,7 @@ function Card({key,singlenft}) {
                 bg={'purple.800'}
               >
                 {" "}
-                <Text color={'white'}> SWAP </Text>{" "}
+                <Text color={'white'}> BUY </Text>{" "}
               </Button>
               </Center>
       
