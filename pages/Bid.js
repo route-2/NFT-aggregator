@@ -64,94 +64,22 @@ const Bid = () => {
         
         
          </Flex>
-        <Flex width={"50%"} direction={"column"} flex={'wrap'}>
-          <Flex direction={"column"}>
-            <Flex width={"50%"}> 
-            <Box  mt={"30px"}>
-          <Box
-            width={"500px"}
-            mt={"100px"}
-            height={"190px"}
-            bg={"whiteAlpha.300"}
-            backdropFilter={"auto"}
-            backdropBlur={"2px"}
-            ml={"40%"}
-            borderRadius={"20px"}
-          >
-            <Text
-              fontSize={"2xl"}
-              color={"white"}
-              textAlign={"center"}
-              pt={"20px"}
-            >
-              {" "}
-              About NFTs{" "}
-            </Text>
-            <Box
-            width={"200px"}
-            mt={"50%"}
-            height={"190px"}
-            bg={"whiteAlpha.300"}
-            backdropFilter={"auto"}
-            backdropBlur={"2px"}
-            
-            borderRadius={"20px"}
-           
-          >
-          
-          <Center> 
-          <Button mt={'30% '}  bg={'purple.100'}>
-          
-          MATIC 
-           </Button>
-           </Center> 
-           
-          </Box>
-          </Box>
-          </Box>
-         
-            
-            
-            
-            
-            
+        <Flex alignItems={'center'} width={"50%"} mt={'10%'} direction={"column"} flex={'wrap'}>
+          <Flex width={"80%"} height={"fit-content"} padding={'50px'} alignItems={'center'} textAlign={'center'} bgColor={"purple.800"} rounded={'3xl'} >
+            <Text alignSelf={'center'} pl={'35%'} color={'white'} fontSize={'xl'} > DESCRIPTION OF NFT </Text>
+          </Flex>
+          <Flex flexDirection={'row'} width={'80%'} mt={'40px'} height={'fit-content'} justifyContent={'space-between'} >
+            <Flex width={'45%'}  bgColor={'purple.900'} height={"200px"} rounded={'2xl'} justifyContent={'center'} alignItems={'center'} >
+              <Button bg={'purple.200'}>   <img src='https://cryptologos.cc/logos/polygon-matic-logo.svg?v=022' width={"20px"}/> &nbsp; MATIC  </Button>
             </Flex>
-            <Flex direction={'column'}> 
-            <Box
-            width={"200px"}
-            mt={"8%"}
-            height={"190px"}
-            bg={"transparent"}
-            backdropFilter={"auto"}
-            backdropBlur={"2px"}
-            
-            borderRadius={"20px"}
-            ml={'50%'}
-           
-          >
-          <Center> 
-          <Button mt={'60% '}  bg={'purple.100'} position={'absolute'}>
+            <Flex flexDirection={'column'} width={'45%'} bgColor={'purple.900'} height={"200px"} rounded={'2xl'} justifyContent={'center'} alignItems={'center'} >
+            <Button   bg={'purple.100'} >
           
           <img src='https://cryptologos.cc/logos/polygon-matic-logo.svg?v=022' width={"20px"}/> &nbsp; PLACE BID 
            </Button>
-           
-           </Center> 
-           <Center> 
-           <Button mt={'60% '} bg={'purple.100'}>
-          
-          BUY NOW 
-           </Button>
-           </Center>
-          </Box>
-          
-           
-            
-            
-            
-            
-            
-            
+              <Button bg={'purple.200'} mt={'10px'}> BUY NOW </Button>
             </Flex>
+
           </Flex>
         </Flex>
       </Flex>

@@ -22,23 +22,25 @@ import {
     TabPanels,
     Link,
     
+    
   } from "@chakra-ui/react";
   import * as React from "react";
   import SearchBar from "./Search";
   import { Icon } from "@chakra-ui/react";
   import Card from "./NftCard";
   import Nftdatalist from './Nftdatalist.json'
+  import { useState } from "react";
   
   import { useMetamask } from "./api/components/context/metamsk.context";
   import Navbar from "./api/components/Navbar";
   
   const Profile = () => {
     const { provider, walletAddress, balance } = useMetamask();
-//  const Datalist =()=> {
-//     {dataList.map(function (data) {
-//         const { collection, name,image, price } = data;
-//  }
-
+    const colors = useColorModeValue(
+      ['red.50', 'teal.50', 'blue.50'],
+      ['red.90','purple.50',  'blue.90'],)
+      const [tabIndex, setTabIndex] = useState('')
+      
   
     return (
       <>
@@ -79,8 +81,8 @@ import {
          <Text fontSize={"3xl"} pt={'20px'} color={"white"} textAlign={'center'}  > MD MOHSIN </Text>
          
           <Center>
-          <Tabs isFitted  variant='soft-rounded' colorScheme='purple.100' >
-  <TabList textAlign={'center'} >
+          <Tabs isFitted  variant='soft-rounded' onChange={(index) => setTabIndex(index)}  >
+  <TabList textAlign={'center'} colorScheme='purple.200'>
     <Tab>  MY ITEMS </Tab>
     <Tab>  LISTED ITEMS </Tab>
     {/* <Tab>  AUCTIONS </Tab>
@@ -97,8 +99,18 @@ import {
     <Flex direction={"row"} justifyContent={'center'} wrap={"wrap"} width={"182vh"} height={'fit-content'} >
               <Flex direction={"column"} alignItems={"center"} justifyContent={"center"} margin={"10px"} width={"fit-content"} height={"fit-content"} bgColor={"#1F0942"} >
                
-            <Card/> 
-
+              <Flex direction={"column"} alignItems={"center"} justifyContent={"center"} margin={"10px"} width={"fit-content"} height={"fit-content"} bgColor={"#1F0942"} >
+              <Flex justifyContent={"center"} wrap={"wrap"} >
+        {Nftdatalist.map((nft,index) => {
+        return (  <Link href='./Bid'> <Box marginTop={"50px"}  marginLeft={"20px"} >
+          <Card key={index} singlenft={nft} />
+        </Box>
+        </Link>
+        );
+      })}
+        </Flex>  
+           
+                </Flex>
                 </Flex>
               
             </Flex>
