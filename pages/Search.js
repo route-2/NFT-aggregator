@@ -9,7 +9,7 @@ const SearchBar = () => {
     <Flex justifyContent={"space-between"} padding={'10px'} bgGradient="linear(to-br, #1F0942, #000000)"> 
     <Box w='70px' h='10'   > 
     <Link href='./Homepage'> 
-    <Image
+    <img
   
   mt={'10px'}
   ml={"40px"}

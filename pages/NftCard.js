@@ -12,9 +12,8 @@ import {
   useColorModeValue,
   Heading,
 } from "@chakra-ui/react";
-import Nftdatalist from './Nftdatalist.json'
-function Card(props) {
-  const { collection, name,image, price } = props;
+
+function Card({key,singlenft}) {
 
   return (
     <Stack>
@@ -44,7 +43,7 @@ function Card(props) {
         pos: 'absolute',
         top: 5,
         left: 0,
-        backgroundImage: {image},
+        backgroundImage: singlenft.image,
         filter: 'blur(15px)',
         zIndex: -1,
         
@@ -59,19 +58,19 @@ function Card(props) {
         height={230}
         width={282}
         objectFit={'cover'}
-        src={image}
+        src={singlenft.image}
       />
     </Box>
    
       <Text pt={"30px"} textAlign={'center'} color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
-        NFT COLLECTION {collection}
+        {singlenft.collection}
       </Text>
       <Heading pt={"30px"} textAlign={'center'} fontSize={'2xl'} fontFamily={'body'} fontWeight={500}>
-       {name}
+       {singlenft.name}
       </Heading>
      
         <Text pt={"30px"} textAlign={'center'} fontWeight={800} fontSize={'xl'}>
-         {price}
+         {singlenft.price}
         </Text>
        
       
