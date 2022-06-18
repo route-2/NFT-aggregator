@@ -11,9 +11,18 @@ import {
   SimpleGrid,
   useColorModeValue,
   Heading,
+  EmailIcon,
+  Center,
+  Select,
 } from "@chakra-ui/react";
+import { useState } from "react";
+import { useMetamask } from "./api/components/context/metamsk.context";
+
 
 function Card({key,singlenft}) {
+  const { provider, walletAddress, balance } = useMetamask();
+  const [swapTo,setSwapTo] = useState('');
+  const [swapFrom,setSwapFrom] = useState('');
 
   return (
     <Stack>
@@ -62,17 +71,87 @@ function Card({key,singlenft}) {
       />
     </Box>
    
-      <Text pt={"30px"} textAlign={'center'} color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
+      <Text pt={"10px"} textAlign={'center'} color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
         {singlenft.collection}
       </Text>
-      <Heading pt={"30px"} textAlign={'center'} fontSize={'2xl'} fontFamily={'body'} fontWeight={500}>
+      <Heading pt={"5px"} textAlign={'center'} fontSize={'2xl'} fontFamily={'body'} fontWeight={500}>
        {singlenft.name}
       </Heading>
      
-        <Text pt={"30px"} textAlign={'center'} fontWeight={800} fontSize={'xl'}>
+        <Text pt={"5px"} textAlign={'center'} fontWeight={800} fontSize={'xl'}>
          {singlenft.price}
         </Text>
-       
+        <Center> 
+        <Button mt={'8px'} color='blackAlpha.700' colorScheme='gray' variant='solid'> 
+        
+        BUY NOW
+        
+        </Button>
+        </Center>
+        <Flex color={'black'} >
+              <Select
+                placeholder=""
+                borderColor={"purple.200"}
+                color={"black"}
+                bg={"purple.100"}
+                fontSize={"xl"}
+                fontWeight={"bold"}
+                width={"150px"}
+                
+                pt={"9%"}
+                borderRadius={"10px"}
+                value={swapFrom}
+                onChange={(e) => {
+                  setSwapFrom(e.target.value)
+                }}
+              >
+                <option value="ETH"> ETH </option>
+                <option value="MATIC"> MATIC </option>
+                <option value="BNP"> BNB </option>
+              </Select>
+              <Box>
+                <Image
+                  width={"30px"}
+                  mt={"40px"}
+                  p={'1'}
+                  src={
+                    "https://i.ibb.co/HBSPkHZ/icons8-refresh-50.png"
+                  }
+                />
+              </Box>
+              <Select
+                placeholder=""
+                borderColor={"purple.200"}
+                color={"black"}
+                fontSize={"xl"}
+                fontWeight={"bold"}
+                width={"150px"}
+               
+                pt={"9%"}
+                bg={"purple.100"}
+                borderRadius={"10px"}
+                value={swapTo}
+                onChange={(e) => {
+                  setSwapTo(e.target.value)
+                }}
+              >
+                <option value="ETH"> ETH </option>
+                <option value="MATIC"> MATIC </option>
+                <option value="BNP"> BNB </option>
+              </Select>
+              
+            </Flex>
+
+            <Center> 
+              <Button
+               
+                mt={"5%"}
+                bg={'purple.800'}
+              >
+                {" "}
+                <Text color={'white'}> SWAP </Text>{" "}
+              </Button>
+              </Center>
       
     
   </Box> 

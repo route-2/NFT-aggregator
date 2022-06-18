@@ -36,6 +36,7 @@ import {
 //     {dataList.map(function (data) {
 //         const { collection, name,image, price } = data;
 //  }
+
   
     return (
       <>
