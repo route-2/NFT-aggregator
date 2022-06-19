@@ -2,8 +2,12 @@ import { Box, Divider,Link, Button,AvatarGroup,Avatar,AiOutlineUser,Image, Hstac
 import * as React from "react";
 import { IconButton } from "@chakra-ui/react";
 import Homepage from "./Homepage";
+import NotConnectedModal from "./api/components/NotConnectedModal";
+import { useMetamask } from "./api/components/context/metamsk.context";
+import ConnectedModal from "./api/components/ConnectedModal";
 const SearchBar = () => {
-  
+  const { isWalletConnected, walletAddress, chain, currentWallet } =
+  useMetamask();
   return (
     <>
     <Flex justifyContent={"space-between"} padding={'10px'} bgGradient="linear(to-br, #1F0942, #000000)"> 
@@ -53,16 +57,24 @@ const SearchBar = () => {
           ml={"25%"}
         />
         </Box> 
-        <Box>
-        <Button mr={'40px'} mt={'15px'} bgGradient="linear(to-l, purple.800, purple.200)">
+       
+        
           {" "}
-          Mint Collection{" "}
+          <Box pl={"70px"} pr={"60px"} mr={'40px'} mt={'15px'} >
+            {isWalletConnected && walletAddress && chain && currentWallet ? (
+              <>
+                <ConnectedModal />
+              </>
+            ) : (
+              <NotConnectedModal />
+            )}
+          </Box>
          
-        </Button>
+      
         
         
        
-      </Box>
+    
       </Flex>
      
     </>
