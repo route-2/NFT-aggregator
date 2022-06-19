@@ -5,6 +5,7 @@ import styles from '../styles/Home.module.css'
 import Navbar from './api/components/Navbar'
 import ExplorePage from './ExplorePage'
 import Homepage from './Homepage'
+import Launch from './Launching'
 import {
   BrowserRouter,
   Routes,
@@ -15,7 +16,7 @@ import {
 const Home: NextPage = () => {
   return (
     <>
-    <Homepage/>
+    <Launch/>
     </>
   )
 }
