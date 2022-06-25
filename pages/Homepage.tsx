@@ -38,27 +38,23 @@ const Homepage = () => {
           justifyContent={"flex-end"}
           padding={"20px"}
         >
-          
           <Link
             href={"./Profile"}
             pl={"70px"}
             pr={"60px"}
             variant={"unstyled"}
-            colorScheme={"purple"}
+            colorscheme={"purple"}
             color={"white"}
-            
           >
-            
             Profile
           </Link>
-         
-         
+
           <Link
             href="./ExplorePage"
             pl={"70px"}
             pr={"60px"}
             variant={"unstyled"}
-            colorScheme={"purple"}
+            colorscheme={"purple"}
             color={"white"}
           >
             Explore
@@ -68,7 +64,7 @@ const Homepage = () => {
             pl={"70px"}
             pr={"60px"}
             variant={"unstyled"}
-            colorScheme={"purple"}
+            colorscheme={"purple"}
             color={"white"}
           >
             Chain
@@ -78,7 +74,7 @@ const Homepage = () => {
             pl={"70px"}
             pr={"60px"}
             variant={"unstyled"}
-            colorScheme={"purple"}
+            colorscheme={"purple"}
             color={"white"}
           >
             Liquid MarketPlace
@@ -88,14 +84,11 @@ const Homepage = () => {
             pl={"70px"}
             pr={"60px"}
             variant={"unstyled"}
-            colorScheme={"purple"}
+            colorscheme={"purple"}
             color={"white"}
           >
             Mint
           </Link>
-          
-
-          
 
           <Box pl={"70px"} pr={"60px"}>
             {isWalletConnected && walletAddress && chain && currentWallet ? (
@@ -108,8 +101,8 @@ const Homepage = () => {
           </Box>
         </Flex>
 
-        <Flex flexDirection={"row"} height={"150vh"} wrap={'wrap'}>
-          <Flex width={"50%"} >
+        <Flex flexDirection={"row"} height={"150vh"} wrap={"wrap"}>
+          <Flex width={"50%"}>
             <Text
               bgGradient="linear(to-l, purple.800, purple.200)"
               bgClip="text"
@@ -121,25 +114,17 @@ const Homepage = () => {
             >
               Buy or Trade your<Text>NFTs</Text>
             </Text>
-           
           </Flex>
 
-          <Flex
-            
-            
-            mt={'90px'}
-            ml={'110px'}
-            
-            
-          >
+          <Flex mt={"90px"} ml={"110px"}>
             <Box
               boxShadow="inner"
               p="6"
               rounded="md"
               bgGradient="linear(purple.400,purple.100)"
               dropShadow={"md"}
-              width={'fit-content'}
-              height={'fit-content'}
+              width={"fit-content"}
+              height={"fit-content"}
             >
               <Image src="https://s8.gifyu.com/images/WhatsApp-Video-2022-06-09-at-9.06.07-PM9d0aee11c2a7e0d3.gif" />
             </Box>

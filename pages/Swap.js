@@ -201,12 +201,12 @@ function Swaps() {
                   <Button
                     variant={"solid"}
                     onClick={web3Context.depositAsset}
-                    colorScheme={"twitter"}
+                    colorscheme={"twitter"}
                   >
                     Confirm Swap
                   </Button>
                 ) : (
-                  <Button variant={"solid"} colorScheme={"twitter"}>
+                  <Button variant={"solid"} colorscheme={"twitter"}>
                     {approved === null ? null : approved === false ? (
                       <h1>Approving...</h1>
                     ) : (

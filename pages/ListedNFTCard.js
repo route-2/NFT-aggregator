@@ -26,13 +26,13 @@ const client = new faunadb.Client({
   secret: "fnAEpgv5JuACSfwsB64X-MjaKKApGX9EQZ05sKfJ",
 });
 
-function Card({ key, singlenft }) {
-  console.log("NFT details", singlenft);
-  const refId = singlenft.ref.value.id;
-  singlenft = singlenft.data.metadata;
+function ListedNFTCard({ key, singlenft }) {
+  console.log("Listed NFT details", singlenft);
+  //   const refId = singlenft.ref.value.id;
+  //   singlenft = singlenft.data.metadata;
   // const { owner, name, description, collection, uri } = singlenft;
 
-  const { provider, walletAddress, balance, chain } = useMetamask();
+  const { provider, walletAddress, balance } = useMetamask();
   const [swapTo, setSwapTo] = useState("");
   const [swapFrom, setSwapFrom] = useState("");
   const [buyON, setBuyOn] = useState("4");
@@ -41,13 +41,13 @@ function Card({ key, singlenft }) {
   const [isLoading, setLoading] = useState(false);
 
   const buyHandler = async () => {
-    console.log("Buy...", contract.address);
+    console.log("Buy...", contract);
     if (walletAddress === singlenft.owner) {
       alert("You cant buy your own nft");
     } else {
       const txReceipt = await (
         await contract.redeem(
-          walletAddress,
+          singlenft.owner,
           singlenft.tokenId,
           singlenft.minPrice.toString(),
           singlenft.uri,
@@ -74,27 +74,11 @@ function Card({ key, singlenft }) {
         const signer = provider?.getSigner();
 
         if (signer) {
-          let marketplace;
-          if (chain?.toString() == "4") {
-            marketplace = new ethers.Contract(
-              "0xe466f8671fcff36a910fa75fa0713b3172df359b",
-              ABI,
-              signer
-            );
-          } else if (chain?.toString() == "97") {
-            marketplace = new ethers.Contract(
-              "0x6cd7fE9D0f79845981A4C138E52c4ff3Ae011616",
-              ABI,
-              signer
-            );
-          } else {
-            marketplace = new ethers.Contract(
-              "0x85f01C6D86fa1aBe4b0E55BC9e43396EE1cfbb01",
-              ABI,
-              signer
-            );
-          }
-
+          const marketplace = new ethers.Contract(
+            "0x3EF309E793619FfA816D455771B374A552882D7b",
+            ABI,
+            signer
+          );
           setContract(marketplace);
           setLoading(false);
         }
@@ -196,7 +180,7 @@ function Card({ key, singlenft }) {
         <Center>
           <Button mt={"5%"} bg={"purple.800"} onClick={buyHandler}>
             {" "}
-            <Text color={"white"}> BUY </Text>{" "}
+            <Text color={"white"}> CANCEL LISTING</Text>{" "}
           </Button>
         </Center>
       </Box>
@@ -204,4 +188,4 @@ function Card({ key, singlenft }) {
   );
 }
 
-export default Card;
+export default ListedNFTCard;
