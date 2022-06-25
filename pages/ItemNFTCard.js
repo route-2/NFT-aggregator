@@ -276,9 +276,10 @@ function ItemNFTCard({ key, singlenft }) {
           fontSize={"xl"}
           color={"purple.500"}
         >
-          {ethValue} {nativeCrypto} 
+          {ethValue}
+           {/* {nativeCrypto}  */}
         </Text>
-        <Image w={'20px'} ml={'10px'} src={nftLogo}/>
+        <Image w={'15px'} ml={'10px'} src={nftLogo}/>
         </Flex>
         
         
