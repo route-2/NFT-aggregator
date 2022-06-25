@@ -266,7 +266,7 @@ function ItemNFTCard({ key, singlenft }) {
         </Text>
 
         <Center>
-          <Button mt={"5%"} bg={"purple.800"} onClick={moveHandler}>
+          <Button mt={'6'} mr={"5"} bg={"purple.800"} onClick={moveHandler}>
             {" "}
             <Text color={"white"}> Cross chain NFT to </Text>{" "}
           </Button>
@@ -297,14 +297,15 @@ function ItemNFTCard({ key, singlenft }) {
           </Button>
         </Center>
         <Center>
-          <Button mt={"5%"} bg={"purple.800"}>
+          <Button mr={'5'} width={'150px'} mt={"4"} bg={"purple.800"}>
             {" "}
-            <Text color={"white"}> List for Sale </Text>{" "}
+            <Text color={"white"} > List for Sale </Text>{" "}
           </Button>
           <Input
             id="first-name"
-            placeholder="Price at which you want to sell your NFT ....."
+            placeholder="Price of the NFT"
             color={"black"}
+            mt={'4'}
             onChange={(e) => setSalePrice(e.target.value)}
           />
         </Center>

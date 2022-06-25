@@ -71,7 +71,7 @@ const ExplorePage = () => {
     <>
       <SearchBar />
       <Flex
-        height={"100%"}
+        height={"150vh"}
         backgroundSize={"cover"}
         bgGradient="linear(to-br, #1F0942, #000000)"
         justifyContent={"space-between"}

@@ -22,7 +22,7 @@ const ExplorePage = () => {
     <>
       <SearchBar />
       <Flex
-        height={"150vh"}
+        height={"100%"}
         backgroundSize={"cover"}
         bgGradient="linear(to-br, #1F0942, #000000)"
       >

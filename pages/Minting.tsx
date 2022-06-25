@@ -14,6 +14,15 @@ import {
   Icon,
   InputGroup,
 } from "@chakra-ui/react";
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+} from '@chakra-ui/react'
 import * as React from "react";
 import { ReactNode, useRef } from "react";
 import SearchBar from "./Search";
@@ -23,12 +32,14 @@ import { FiFile } from "react-icons/fi";
 import { Row, Form, Spinner } from "react-bootstrap";
 import { useForm, UseFormRegisterReturn } from "react-hook-form";
 import { create as ipfsHttpClient } from "ipfs-http-client";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { LazyMinter } from "./CreateVoucher.js";
 import { ABI } from "./LazyNFT.js";
 import { useMetamask } from "./api/components/context/metamsk.context";
 import Navbar from "./api/components/Navbar";
 import { ethers } from "ethers";
+import { useDisclosure } from "@chakra-ui/react";
 const faunadb = require("faunadb");
 
 const q = faunadb.query;
@@ -38,6 +49,7 @@ const fclient = new faunadb.Client({
 const client = ipfsHttpClient("https://ipfs.infura.io:5001/api/v0");
 
 const Mint = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure()
   const { provider, chain, walletAddress, balance } = useMetamask();
 
   const [image, setImage] = useState("");
@@ -88,7 +100,9 @@ const Mint = () => {
   const submitFormHandler = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
     await createNFT();
+    toast("Woohoo your NFT is created!");
   };
+ 
   const createNFT = async () => {
     if (!image || !price || !name || !description) {
       return;
@@ -200,12 +214,11 @@ const Mint = () => {
           bgGradient="linear(to-br, #1F0942, #000000)"
           wrap={"wrap"}
         >
-          <Flex width={"100%"} textAlign={"center"}>
+          <Flex width={"100%"} textAlign={"center"} justifyContent={'center'}>
             <Box
               width={"50%"}
               mt={"10%"}
-              height={"390px"}
-              ml={"15%"}
+              height={"450px"}
               padding={"20px"}
               borderRadius={"20px"}
               bg={"whiteAlpha.300"}
@@ -214,45 +227,61 @@ const Mint = () => {
             >
               <form onSubmit={submitFormHandler}>
                 <FormControl isRequired>
-                  <FormLabel htmlFor="first-name">Name :</FormLabel>
+                  <FormLabel htmlFor="first-name" color={'white'}>Name :</FormLabel>
                   <Input
+                  mt={'10px'}
                     id="first-name"
-                    placeholder="Name of your NFT ....."
+                    placeholder="Name your NFT "
                     size="sm"
+                    color={'white'}
                     onChange={setNameHandler}
+                    borderRadius={'12px'}
                   />
-                  <FormLabel htmlFor="first-name">Collection :</FormLabel>
+                  <FormLabel mt={'10px'} color={'white'} htmlFor="first-name">Collection :</FormLabel>
                   <Input
+                  
                     id="first-name"
-                    placeholder="Name of your Collection ....."
+                    placeholder="Name your Collection"
                     size="sm"
                     onChange={setCollectionHandler}
+                    borderRadius={'12px'}
+                    color={'white'}
                   />
-                  <FormLabel htmlFor="first-name">Description :</FormLabel>
+                  <FormLabel mt={'10px'} color={'white'} htmlFor="first-name">Description :</FormLabel>
                   <Input
                     id="first-name"
-                    placeholder="Description of your NFT ....."
+                    placeholder="Description of your NFT "
                     size="sm"
+                    borderRadius={'12px'}
+                    color={'white'}
                     onChange={setDescriptionHandler}
                   />
-                  <FormLabel htmlFor="first-name">Price :</FormLabel>
+                  <FormLabel mt={'10px'} color={'white'} htmlFor="first-name">Price :</FormLabel>
                   <Input
                     id="first-name"
-                    placeholder="Price at which you want to sell your NFT ....."
+                    placeholder="Price at which you want to sell your NFT "
                     size="sm"
                     onChange={setPriceHandler}
+                    color={'white'}
+                    borderRadius={'12px'}
                   />
-                  <FormLabel>{"File input"}</FormLabel>
+                  <FormLabel mt={'10px'} color={'white'}>{"File input :"}</FormLabel>
 
                   <Form.Control
                     type="file"
                     required
                     name="file"
+                    color={'white'}
                     onChange={uploadToIPFS}
+                    
                   />
                 </FormControl>
+                <div> 
 
-                <button>Submit</button>
+                <Button mt={'20px'}  variant='ghost' color={"white"} onClick={submitFormHandler}> Submit</Button>
+               
+                <ToastContainer />
+                </div>
               </form>
             </Box>
           </Flex>

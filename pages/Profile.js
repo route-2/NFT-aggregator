@@ -283,7 +283,7 @@ const Profile = () => {
     <>
       <SearchBar />
       <Box
-        height={"fit-content"}
+        height={"150vh"}
         backgroundSize={"cover"}
         paddingBottom={"40px"}
         bgGradient="linear(to-br, #1F0942, #000000)"

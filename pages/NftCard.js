@@ -158,16 +158,17 @@ function Card({ key, singlenft }) {
           {singlenft.collection}
         </Text>
         <Heading
-          pt={"5px"}
+          pt={"8px"}
           textAlign={"center"}
           fontSize={"2xl"}
+          color={'black'}
           fontFamily={"body"}
           fontWeight={500}
         >
           {singlenft.name}
         </Heading>
 
-        <Text pt={"5px"} textAlign={"center"} fontWeight={800} fontSize={"xl"}>
+        <Text pt={"4px"} color={'black'} textAlign={"center"} fontWeight={800} fontSize={"xl"}>
           {singlenft.price}
         </Text>
 
