@@ -22,6 +22,7 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
+  Hstack,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { ethers } from "ethers";
@@ -74,6 +75,7 @@ function ItemNFTCard({ key, singlenft }) {
   const [swapFrom, setSwapFrom] = useState("");
   const [buyON, setBuyOn] = useState("4");
   const [moveTo, setMoveTo] = useState("4");
+  const[nftLogo,setNftLogo]=useState("")
   const [signer, setSigner] = useState(null);
   const [contract, setContract] = useState(null);
   const [bridgeContract, setBridgeContract] = useState(null);
@@ -158,12 +160,15 @@ function ItemNFTCard({ key, singlenft }) {
         if (singlenft.chainId === "4") {
           chainString = "Rinkbey Testnet";
           setNativeCrypto("ETH");
+          setNftLogo("https://cryptologos.cc/logos/ethereum-eth-logo.svg?v=022")
         } else if (singlenft.chainId === "97") {
           chainString = "Binance Smart Chain Testnet";
           setNativeCrypto("BNB");
+          setNftLogo("https://cryptologos.cc/logos/bnb-bnb-logo.svg?v=022")
         } else {
           chainString = "Mumbai Polygon Testnet";
           setNativeCrypto("MATIC");
+          setNftLogo("https://cryptologos.cc/logos/polygon-matic-logo.svg?v=022")
         }
         setChainString(chainString);
         console.log("Bridge Contract", bridgeContract);
@@ -263,7 +268,7 @@ function ItemNFTCard({ key, singlenft }) {
         >
           {singlenft.name}
         </Heading>
-
+       <Flex justifyContent={'center'}> 
         <Text
           pt={"5px"}
           textAlign={"center"}
@@ -271,8 +276,12 @@ function ItemNFTCard({ key, singlenft }) {
           fontSize={"xl"}
           color={"purple.500"}
         >
-          {ethValue} {nativeCrypto}
+          {ethValue} {nativeCrypto} 
         </Text>
+        <Image w={'20px'} ml={'10px'} src={nftLogo}/>
+        </Flex>
+        
+        
 
         <Center>
           <Button mt={'6'} mr={"5"} bg={"purple.800"} onClick={moveHandler}>
