@@ -13,6 +13,9 @@ import {
   FormLabel,
   Icon,
   InputGroup,
+  Wrap,
+  WrapItem,
+  Center,
 } from "@chakra-ui/react";
 import {
   Modal,
@@ -23,11 +26,13 @@ import {
   ModalBody,
   ModalCloseButton,
 } from '@chakra-ui/react'
+import { useToast } from "@chakra-ui/react";
 import * as React from "react";
 import { ReactNode, useRef } from "react";
 import SearchBar from "./Search";
 import { RiSwapLine } from "react-icons/ri";
 import { useState } from "react";
+
 import { FiFile } from "react-icons/fi";
 import { Row, Form, Spinner } from "react-bootstrap";
 import { useForm, UseFormRegisterReturn } from "react-hook-form";
@@ -50,8 +55,9 @@ const client = ipfsHttpClient("https://ipfs.infura.io:5001/api/v0");
 
 const Mint = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const variants = [ 'subtle']
   const { provider, chain, walletAddress, balance } = useMetamask();
-
+  const toast = useToast()
   const [image, setImage] = useState("");
   const [price, setPrice] = useState(null);
   const [id, setid] = useState(0);
@@ -100,7 +106,12 @@ const Mint = () => {
   const submitFormHandler = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
     await createNFT();
-    toast("Woohoo your NFT is created!");
+    // toast("Woohoo your NFT is created!");
+    toast({
+      title: ` WOOHOO your nft is created`,
+      variant: 'subtle',
+      isClosable: true,
+    })
   };
  
   const createNFT = async () => {
@@ -278,9 +289,25 @@ const Mint = () => {
                 </FormControl>
                 <div> 
 
-                <Button mt={'20px'}  variant='ghost' color={"white"} onClick={submitFormHandler}> Submit</Button>
+                {/* <Button mt={'20px'}  variant='ghost' color={"white"} onClick={submitFormHandler}> Submit</Button>
                
-                <ToastContainer />
+                <ToastContainer /> */}
+                 <Center> 
+                 <Wrap>
+      
+        <WrapItem >
+          
+          <Button
+          mt={'10px'}
+            onClick={submitFormHandler }
+          >
+            Submit 
+          </Button>
+         
+        </WrapItem>
+      
+    </Wrap>
+    </Center>
                 </div>
               </form>
             </Box>

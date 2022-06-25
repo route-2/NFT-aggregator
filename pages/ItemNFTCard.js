@@ -15,11 +15,19 @@ import {
   Center,
   Select,
   Input,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { ethers } from "ethers";
 import { useMetamask } from "./api/components/context/metamsk.context";
 import { ABI } from "./LazyNFT.js";
+import { useDisclosure } from "@chakra-ui/react";
 import { BRDIGE_ABI } from "./CrossChainNFTBridge.js";
 import { LazyMinter } from "./CreateVoucher.js";
 const faunadb = require("faunadb");
@@ -60,6 +68,7 @@ function ItemNFTCard({ key, singlenft }) {
     BRDIGE_ABI,
     PolygonProvider
   );
+  const { isOpen, onOpen, onClose } = useDisclosure()
   const { provider, walletAddress, balance, chain } = useMetamask();
   const [swapTo, setSwapTo] = useState("");
   const [swapFrom, setSwapFrom] = useState("");
@@ -297,10 +306,22 @@ function ItemNFTCard({ key, singlenft }) {
           </Button>
         </Center>
         <Center>
-          <Button mr={'5'} width={'150px'} mt={"4"} bg={"purple.800"}>
+          <Button mr={'5'} onClick={onOpen} width={'150px'} mt={"4"} bg={"purple.800"}>
             {" "}
             <Text color={"white"} > List for Sale </Text>{" "}
           </Button>
+          <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader> Cross Chained your NFT ;) </ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+           NFT sent from ETH to Polygon
+          </ModalBody>
+
+          
+        </ModalContent>
+      </Modal>
           <Input
             id="first-name"
             placeholder="Price of the NFT"
