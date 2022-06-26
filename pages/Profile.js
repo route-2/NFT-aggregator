@@ -368,7 +368,7 @@ const Profile = () => {
               variant="soft-rounded"
               onChange={(index) => setTabIndex(index)}
             >
-              <TabList textAlign={"center"} colorscheme="purple.200">
+              <TabList textAlign={"center"} colorScheme="purple.200">
                 <Tab> MY ITEMS </Tab>
                 <Tab> LISTED ITEMS </Tab>
                 {/* <Tab>  AUCTIONS </Tab>
