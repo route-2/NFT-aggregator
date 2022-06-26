@@ -14,6 +14,7 @@ import {
   EmailIcon,
   Center,
   Select,
+  useToast,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { ethers } from "ethers";
@@ -30,41 +31,65 @@ function Card({ key, singlenft }) {
   console.log("NFT details", singlenft);
   const refId = singlenft.ref.value.id;
   singlenft = singlenft.data.metadata;
+  const ethValue = ethers.utils.formatEther(singlenft.minPrice);
   // const { owner, name, description, collection, uri } = singlenft;
 
   const { provider, walletAddress, balance, chain } = useMetamask();
+  const toast = useToast();
   const [swapTo, setSwapTo] = useState("");
   const [swapFrom, setSwapFrom] = useState("");
-  const [buyON, setBuyOn] = useState("4");
+  const [buyON, setBuyOn] = useState("97");
+  const [tokenIDName, setTokenName] = useState("");
+  const [nftON, setNftON] = useState("");
   const [signer, setSigner] = useState(null);
+  const [logo, setlogo] = useState("");
   const [contract, setContract] = useState(null);
   const [isLoading, setLoading] = useState(false);
 
   const buyHandler = async () => {
-    console.log("Buy...", contract.address);
-    if (walletAddress === singlenft.owner) {
-      alert("You cant buy your own nft");
-    } else {
-      const txReceipt = await (
-        await contract.redeem(
-          walletAddress,
-          singlenft.tokenId,
-          singlenft.minPrice.toString(),
-          singlenft.uri,
-          singlenft.name,
-          singlenft.description,
-          singlenft.signature,
-          { value: singlenft.minPrice }
-        )
-      ).wait();
-      console.log("tx", txReceipt.status);
-      if (txReceipt.status === 1) {
-        const ref = await client.query(
-          q.Delete(q.Ref(q.Collection("lazy_mint_nft_signatures"), refId))
-        );
-        console.log("Deleted Ref", ref);
+    if (chain?.toString() == singlenft.chainId) {
+      if (walletAddress === singlenft.owner) {
+        alert("You cant buy your own nft");
+      } else {
+        try {
+          const txReceipt = await (
+            await contract.redeem(
+              walletAddress,
+              singlenft.tokenId,
+              singlenft.minPrice.toString(),
+              singlenft.uri,
+              singlenft.name,
+              singlenft.description,
+              singlenft.signature,
+              { value: singlenft.minPrice }
+            )
+          ).wait();
+          console.log("tx", txReceipt.status);
+          if (txReceipt.status === 1) {
+            const ref = await client.query(
+              q.Delete(q.Ref(q.Collection("lazy_mint_nft_signatures"), refId))
+            );
+            console.log("Deleted Ref", ref);
+            toast({
+              title: ` WOOHOO! you bought ${tokenIDName} NFT `,
+              variant: "subtle",
+              isClosable: true,
+            });
+          }
+        } catch (error) {}
+
+        // let timer1 = setTimeout(() => loadMarketplaceItems(), 2000);
       }
-      // let timer1 = setTimeout(() => loadMarketplaceItems(), 2000);
+    } else {
+      const chainString = "";
+      if (singlenft.chainId === "4") {
+        chainString = "Rinkbey Tesnet";
+      } else if (singlenft.chainId === "97") {
+        chainString = "Binance Smart Chain Testnet";
+      } else {
+        chainString = "Mumbai Testnet";
+      }
+      alert(`Switch your metamask to ${chainString} to buy this NFT on chain`);
     }
   };
 
@@ -72,6 +97,8 @@ function Card({ key, singlenft }) {
     const fetchData = async () => {
       if (walletAddress) {
         const signer = provider?.getSigner();
+        const tokenNameID = singlenft.name + "#" + singlenft.tokenId;
+        setTokenName(tokenNameID);
 
         if (signer) {
           let marketplace;
@@ -97,6 +124,16 @@ function Card({ key, singlenft }) {
 
           setContract(marketplace);
           setLoading(false);
+        }
+        if (singlenft.chainId === "4") {
+          setNftON("ETHEREUM");
+          setlogo("https://cryptologos.cc/logos/ethereum-eth-logo.svg?v=022");
+        } else if (singlenft.chainId === "97") {
+          setNftON("BINANCE SMART CHAIN");
+          setlogo("https://cryptologos.cc/logos/bnb-bnb-logo.svg?v=022");
+        } else {
+          setNftON("POLYGON");
+          setlogo("https://cryptologos.cc/logos/polygon-matic-logo.svg?v=022");
         }
         setSigner(signer);
       }
@@ -147,40 +184,46 @@ function Card({ key, singlenft }) {
             src={singlenft.image}
           />
         </Box>
-
-        <Text
-          pt={"10px"}
-          textAlign={"center"}
-          color={"gray.500"}
-          fontSize={"sm"}
-          textTransform={"uppercase"}
-        >
-          {singlenft.collection}
-        </Text>
         <Heading
           pt={"8px"}
           textAlign={"center"}
           fontSize={"2xl"}
-          color={'black'}
+          color={"black"}
           fontFamily={"body"}
           fontWeight={500}
         >
-          {singlenft.name}
+          {tokenIDName}
         </Heading>
 
-        <Text pt={"4px"} color={'black'} textAlign={"center"} fontWeight={800} fontSize={"xl"}>
+        <Text
+          pt={"10px"}
+          textAlign={"center"}
+          color={"black.500"}
+          textTransform={"uppercase"}
+          fontSize={"2xl"}
+        >
+          {singlenft.description}
+        </Text>
+
+        <Text
+          pt={"4px"}
+          color={"black"}
+          textAlign={"center"}
+          fontWeight={800}
+          fontSize={"xl"}
+        >
           {singlenft.price}
         </Text>
 
         <Center>
-          <Select
+          {/* <Select
             placeholder=""
             borderColor={"purple.200"}
             color={"black"}
             bg={"purple.100"}
             fontSize={"xl"}
             fontWeight={"bold"}
-            width={"150px"}
+            width={"160px"}
             pt={"9%"}
             borderRadius={"10px"}
             // value={swapFrom}
@@ -188,10 +231,34 @@ function Card({ key, singlenft }) {
               setBuyOn(e.target.value);
             }}
           >
-            <option value="4"> ETH </option>
-            <option value="80001"> MATIC </option>
-            <option value="97"> BNB </option>
-          </Select>
+            <option value="4"> ETHEREUM </option>
+            <option value="80001"> POLYGON </option>
+            <option value="97"> BINANCE SMART CHAIN </option>
+          </Select> */}
+          <Text
+            pt={"4px"}
+            color={"black"}
+            textAlign={"center"}
+            fontWeight={800}
+            fontSize={"xl"}
+          >
+            {nftON}
+          </Text>
+        </Center>
+        <Center>
+          <Flex justifyContent={"center"}>
+            <Text
+              pt={"5px"}
+              textAlign={"center"}
+              fontWeight={800}
+              fontSize={"xl"}
+              color={"purple.500"}
+            >
+              {ethValue}
+              {/* {nativeCrypto}  */}
+            </Text>
+            <Image w={"15px"} ml={"10px"} src={logo} />
+          </Flex>
         </Center>
 
         <Center>

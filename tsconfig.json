@@ -15,6 +15,12 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/api/components/PostList.jsx", "pages/ExplorePage.jsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "pages/api/components/PostList.jsx",
+    "pages/LazyMarketplace.jsx"
+  ],
   "exclude": ["node_modules"]
 }

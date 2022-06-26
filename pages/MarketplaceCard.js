@@ -20,8 +20,8 @@ import { useState } from "react";
 import { ethers } from "ethers";
 import { useMetamask } from "./api/components/context/metamsk.context";
 import { ABI } from "./LazyNFT.js";
-import { BRDIGE_ABI } from "./CrossChainNFTBridge.js";
-import { MARKETPLACE_ABI } from "./MarketplaceABI";
+import { MARKETPLACE_ABI } from "./MarketplaceABI.js";
+import { BRDIGE_ABI } from "./CrossChainNFTBridge";
 const faunadb = require("faunadb");
 
 const q = faunadb.query;
@@ -29,80 +29,81 @@ const client = new faunadb.Client({
   secret: "fnAEpgv5JuACSfwsB64X-MjaKKApGX9EQZ05sKfJ",
 });
 
-function ListedNFTCard({ key, singlenft }) {
-  console.log("Listed NFT details", singlenft);
-
-  //   singlenft = singlenft.data.metadata;
+function MarketplaceCard({ key, singlenft }) {
+  console.log("Marktplace NFT details", singlenft);
+  const refId = singlenft.ref.value.id;
+  singlenft = singlenft.data.metadata;
+  const ethValue = ethers.utils.formatEther(singlenft.listedPrice);
   // const { owner, name, description, collection, uri } = singlenft;
-  const ethValue = singlenft.isOnChain
-    ? ethers.utils.formatEther(singlenft.listedPrice)
-    : ethers.utils.formatEther(singlenft.minPrice);
-  const refId = singlenft.refId;
 
   const { provider, walletAddress, balance, chain } = useMetamask();
   const toast = useToast();
   const [swapTo, setSwapTo] = useState("");
   const [swapFrom, setSwapFrom] = useState("");
-  const [buyON, setBuyOn] = useState("4");
-  const [signer, setSigner] = useState(null);
-  const [contract, setContract] = useState(null);
-  const [nftON, setNftON] = useState("");
-  const [logo, setlogo] = useState("");
-  const [isLoading, setLoading] = useState(false);
+  const [buyON, setBuyOn] = useState("97");
   const [tokenIDName, setTokenName] = useState("");
-  const [nftMarketplaceContract, setNftMarketplace] = useState(null);
+  const [nftON, setNftON] = useState("");
+  const [signer, setSigner] = useState(null);
+  const [logo, setlogo] = useState("");
+  const [contract, setContract] = useState(null);
+  const [isLoading, setLoading] = useState(false);
 
-  const cancelListingHandler = async () => {
-    if (walletAddress === singlenft.owner) {
+  //const { isOpen, onOpen, onClose } = useDisclosure();
+  const [moveTo, setMoveTo] = useState("4");
+  const [bridgeContract, setBridgeContract] = useState(null);
+  const [nftMarketplaceContract, setNftMarketplace] = useState(null);
+  const [chainString, setChainString] = useState("");
+  const [nativeCrypto, setNativeCrypto] = useState("");
+  const [salePrice, setSalePrice] = useState("");
+
+  const buyHandler = async () => {
+    if (chain?.toString() == singlenft.chainId) {
+      console.log(
+        "Datas",
+        singlenft.nftContractAddress,
+        singlenft.marketplaceSaleId,
+        singlenft.listedPrice
+      );
       try {
-        if (!singlenft.isOnChain) {
-          const txReceipt = await (
-            await nftMarketplaceContract.cancelMarketItem(
-              singlenft.nftContractAddress,
-              singlenft.marketplaceSaleId,
-              {
-                value: "0",
-              }
-            )
-          ).wait();
-          console.log("tx", txReceipt.status);
-          console.log("txReceipt", txReceipt);
-          if (txReceipt.status === 1) {
-            const ref = await client.query(
-              q.Delete(q.Ref(q.Collection("marketplace_nfts"), refId))
-            );
-            console.log("Deleted Ref", ref);
-            toast({
-              title: `Your NFT is deleted from Lazy Marketplace`,
-              variant: "subtle",
-              isClosable: true,
-            });
-          }
-        } else {
-          console.log("REF ID", refId);
+        const txReceipt = await (
+          await nftMarketplaceContract.createMarketSale(
+            singlenft.nftContractAddress,
+            singlenft.marketplaceSaleId,
+            { value: singlenft.listedPrice }
+          )
+        ).wait();
+        console.log("tx", txReceipt.status);
+        if (txReceipt.status === 1) {
           const ref = await client.query(
             q.Delete(q.Ref(q.Collection("marketplace_nfts"), refId))
           );
           console.log("Deleted Ref", ref);
           toast({
-            title: `Your NFT is deleted from Lazy Marketplace`,
+            title: ` WOOHOO! you bought ${tokenIDName} NFT `,
             variant: "subtle",
             isClosable: true,
           });
         }
       } catch (error) {}
-      // let timer1 = setTimeout(() => loadMarketplaceItems(), 2000);
+    } else {
+      const chainString = "";
+      if (singlenft.chainId === "4") {
+        chainString = "Rinkbey Tesnet";
+      } else if (singlenft.chainId === "97") {
+        chainString = "Binance Smart Chain Testnet";
+      } else {
+        chainString = "Mumbai Testnet";
+      }
+      alert(`Switch your metamask to ${chainString} to buy this NFT on chain`);
     }
   };
 
   React.useEffect(() => {
     const fetchData = async () => {
-      const tokenNameID = singlenft.isOnChain
-        ? singlenft.name + "#" + singlenft.id
-        : singlenft.name + "#" + singlenft.tokenId;
-      setTokenName(tokenNameID);
       if (walletAddress) {
         const signer = provider?.getSigner();
+        const tokenNameID = singlenft.name + "#" + singlenft.id;
+        setTokenName(tokenNameID);
 
         if (signer) {
           let marketplace;
@@ -157,23 +158,38 @@ function ListedNFTCard({ key, singlenft }) {
               signer
             );
           }
+
+          if (singlenft.chainId === "4") {
+            chainString = "Rinkbey Testnet";
+            setNativeCrypto("ETH");
+          } else if (singlenft.chainId === "97") {
+            chainString = "Binance Smart Chain Testnet";
+            setNativeCrypto("BNB");
+          } else {
+            chainString = "Mumbai Polygon Testnet";
+            setNativeCrypto("MATIC");
+          }
+          console.log("NFT Marketplace", nftMarketplace);
+          setChainString(chainString);
           setNftMarketplace(nftMarketplace);
+          setLoading(false);
+          setSigner(signer);
+        }
+        if (singlenft.chainId === "4") {
+          setNftON("ETHEREUM");
+          setlogo("https://cryptologos.cc/logos/ethereum-eth-logo.svg?v=022");
+        } else if (singlenft.chainId === "97") {
+          setNftON("BINANCE SMART CHAIN");
+          setlogo("https://cryptologos.cc/logos/bnb-bnb-logo.svg?v=022");
+        } else {
+          setNftON("POLYGON");
+          setlogo("https://cryptologos.cc/logos/polygon-matic-logo.svg?v=022");
         }
         setSigner(signer);
       }
-      if (singlenft.chainId === "4") {
-        setNftON("ETHEREUM");
-        setlogo("https://cryptologos.cc/logos/ethereum-eth-logo.svg?v=022");
-      } else if (singlenft.chainId === "97") {
-        setNftON("BINANCE SMART CHAIN");
-        setlogo("https://cryptologos.cc/logos/bnb-bnb-logo.svg?v=022");
-      } else {
-        setNftON("POLYGON");
-        setlogo("https://cryptologos.cc/logos/polygon-matic-logo.svg?v=022");
-      }
     };
     fetchData();
-  }, [walletAddress, provider, chain]);
+  }, [walletAddress, provider]);
 
   return (
     <Stack>
@@ -232,13 +248,53 @@ function ListedNFTCard({ key, singlenft }) {
         <Text
           pt={"10px"}
           textAlign={"center"}
-          color={"darkblue"}
+          color={"black.500"}
           textTransform={"uppercase"}
           fontSize={"2xl"}
         >
           {singlenft.description}
         </Text>
 
+        <Text
+          pt={"4px"}
+          color={"black"}
+          textAlign={"center"}
+          fontWeight={800}
+          fontSize={"xl"}
+        >
+          {singlenft.price}
+        </Text>
+
+        <Center>
+          {/* <Select
+            placeholder=""
+            borderColor={"purple.200"}
+            color={"black"}
+            bg={"purple.100"}
+            fontSize={"xl"}
+            fontWeight={"bold"}
+            width={"160px"}
+            pt={"9%"}
+            borderRadius={"10px"}
+            // value={swapFrom}
+            onChange={(e) => {
+              setBuyOn(e.target.value);
+            }}
+          >
+            <option value="4"> ETHEREUM </option>
+            <option value="80001"> POLYGON </option>
+            <option value="97"> BINANCE SMART CHAIN </option>
+          </Select> */}
+          <Text
+            pt={"4px"}
+            color={"black"}
+            textAlign={"center"}
+            fontWeight={800}
+            fontSize={"xl"}
+          >
+            {nftON}
+          </Text>
+        </Center>
         <Center>
           <Flex justifyContent={"center"}>
             <Text
@@ -256,40 +312,9 @@ function ListedNFTCard({ key, singlenft }) {
         </Center>
 
         <Center>
-          {/* <Select
-            placeholder=""
-            borderColor={"purple.200"}
-            color={"black"}
-            bg={"purple.100"}
-            fontSize={"xl"}
-            fontWeight={"bold"}
-            width={"150px"}
-            pt={"9%"}
-            borderRadius={"10px"}
-            // value={swapFrom}
-            onChange={(e) => {
-              setBuyOn(e.target.value);
-            }}
-          >
-            <option value="4"> ETH </option>
-            <option value="80001"> MATIC </option>
-            <option value="97"> BNB </option>
-          </Select> */}
-          <Text
-            pt={"4px"}
-            color={"black"}
-            textAlign={"center"}
-            fontWeight={800}
-            fontSize={"xl"}
-          >
-            {nftON}
-          </Text>
-        </Center>
-
-        <Center>
-          <Button mt={"5%"} bg={"purple.800"} onClick={cancelListingHandler}>
+          <Button mt={"5%"} bg={"purple.800"} onClick={buyHandler}>
             {" "}
-            <Text color={"white"}> CANCEL LISTING</Text>{" "}
+            <Text color={"white"}> BUY NFT </Text>{" "}
           </Button>
         </Center>
       </Box>
@@ -297,4 +322,4 @@ function ListedNFTCard({ key, singlenft }) {
   );
 }
 
-export default ListedNFTCard;
+export default MarketplaceCard;

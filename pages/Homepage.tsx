@@ -14,10 +14,19 @@ import { useMetamask } from "./api/components/context/metamsk.context";
 import ConnectedModal from "./api/components/ConnectedModal";
 import { ButtonGroup } from "@chakra-ui/react";
 import { BeatLoader } from "react-spinners";
-import ExplorePage from "./ExplorePage";
+import LazyMarketplace from "./LazyMarketplace";
+import React from "react";
 const Homepage = () => {
-  const { isWalletConnected, walletAddress, chain, currentWallet } =
-    useMetamask();
+  const {
+    isWalletConnected,
+    walletAddress,
+    chain,
+    currentWallet,
+    connectMetamask,
+  } = useMetamask();
+  // React.useEffect(() => {
+  //   connectMetamask();
+  // }, []);
   return (
     <>
       {/* <Navbar/> */}
@@ -50,34 +59,24 @@ const Homepage = () => {
           </Link>
 
           <Link
-            href="./ExplorePage"
+            href="./LazyMarketplace"
             pl={"70px"}
             pr={"60px"}
             variant={"unstyled"}
             colorscheme={"purple"}
             color={"white"}
           >
-            Explore
+            Lazy Marketplace
           </Link>
           <Link
-            href="./Chain"
+            href="./NFTMarketplace"
             pl={"70px"}
             pr={"60px"}
             variant={"unstyled"}
             colorscheme={"purple"}
             color={"white"}
           >
-            Chain
-          </Link>
-          <Link
-            href="./Marketplace"
-            pl={"70px"}
-            pr={"60px"}
-            variant={"unstyled"}
-            colorscheme={"purple"}
-            color={"white"}
-          >
-            Liquid MarketPlace
+            NFT MarketPlace
           </Link>
           <Link
             href="./Minting"
@@ -87,7 +86,7 @@ const Homepage = () => {
             colorscheme={"purple"}
             color={"white"}
           >
-            Mint
+            Create NFT
           </Link>
 
           <Box pl={"70px"} pr={"60px"}>

@@ -51,7 +51,11 @@ const Profile = () => {
   const [nfts, setNFTs] = useState([]);
   const [listednfts, setListedNFTs] = useState([]);
 
-  const { provider, walletAddress, balance, chain } = useMetamask();
+  const { provider, walletAddress, balance, chain, connectMetamask } =
+    useMetamask();
+  React.useEffect(() => {
+    connectMetamask();
+  }, []);
 
   let ETHttpProvider = new ethers.providers.JsonRpcProvider(
     "https://rinkeby.infura.io/v3/e63e2bf7da29499c99a7560a7a4441b7"
@@ -84,11 +88,32 @@ const Profile = () => {
         console.log("allRefs--", allRefs);
         const query = await client.query(allRefs.data.map((ref) => q.Get(ref)));
         console.log("query--", query);
+
+        const allRefsOnChain = await client.query(
+          q.Paginate(q.Match(q.Index("get_by_address_onchain"), walletAddress))
+        );
+
+        console.log("allRefsOnChain--", allRefsOnChain);
+        const queryOnChain = await client.query(
+          allRefsOnChain.data.map((ref) => q.Get(ref))
+        );
+        console.log("queryOnChain--", queryOnChain);
+
         const listedNFTs = [];
         if (query.length > 0) {
           for (var i = 0; i < query.length; i++) {
-            // console.log("Poylgon Details", details);
-            listedNFTs.push(query[i].data.metadata);
+            var details = query[i].data.metadata;
+            details.isOnChain = false;
+            details.refId = query[i].ref.value.id;
+            listedNFTs.push(details);
+          }
+        }
+        if (queryOnChain.length > 0) {
+          for (var i = 0; i < queryOnChain.length; i++) {
+            var details = queryOnChain[i].data.metadata;
+            details.isOnChain = true;
+            details.refId = queryOnChain[i].ref.value.id;
+            listedNFTs.push(details);
           }
         }
 
@@ -110,6 +135,8 @@ const Profile = () => {
           metadata.chainId = "4";
           metadata.uri = tokenUri;
           metadata.nftContractAddress = ETH_MINTED;
+          metadata.chainlogo =
+            "https://cryptologos.cc/logos/ethereum-eth-logo.svg?v=022";
           NFTList.push(metadata);
         }
         let ETH_BSC_NFTContract = new ethers.Contract(
@@ -125,6 +152,8 @@ const Profile = () => {
           metadata.chainId = "4";
           metadata.uri = tokenUri;
           metadata.nftContractAddress = ETH_BSC_PEGGED;
+          metadata.chainlogo =
+            "https://cryptologos.cc/logos/ethereum-eth-logo.svg?v=022";
           NFTList.push(metadata);
         }
         let ETH_POLY_NFTContract = new ethers.Contract(
@@ -140,6 +169,8 @@ const Profile = () => {
           metadata.chainId = "4";
           metadata.uri = tokenUri;
           metadata.nftContractAddress = ETH_POLY_PEGGED;
+          metadata.chainlogo =
+            "https://cryptologos.cc/logos/ethereum-eth-logo.svg?v=022";
           NFTList.push(metadata);
         }
         // -----------X----------//
@@ -148,9 +179,7 @@ const Profile = () => {
           ABI,
           BSCttpProvider
         );
-        console.log("Cotracts", BSCNFTcontract);
         const bscIds = await BSCNFTcontract.userTokens(walletAddress);
-        console.log("Ids", bscIds);
         for (var i = 0; i < bscIds.length; i++) {
           console.log(bscIds[i].toString());
           const tokenUri = await BSCNFTcontract.tokenURI(bscIds[i]);
@@ -159,6 +188,8 @@ const Profile = () => {
           metadata.chainId = "97";
           metadata.uri = tokenUri;
           metadata.nftContractAddress = BSC_MINTED;
+          metadata.chainlogo =
+            "https://cryptologos.cc/logos/bnb-bnb-logo.svg?v=022";
           NFTList.push(metadata);
         }
         let BSC_ETH_NFTcontract = new ethers.Contract(
@@ -174,6 +205,8 @@ const Profile = () => {
           metadata.chainId = "97";
           metadata.uri = tokenUri;
           metadata.nftContractAddress = BSC_ETH_PEGGED;
+          metadata.chainlogo =
+            "https://cryptologos.cc/logos/bnb-bnb-logo.svg?v=022";
           NFTList.push(metadata);
         }
         let BSC_POLY_NFTcontract = new ethers.Contract(
@@ -189,6 +222,8 @@ const Profile = () => {
           metadata.chainId = "97";
           metadata.uri = tokenUri;
           metadata.nftContractAddress = BSC_POLY_PEGGED;
+          metadata.chainlogo =
+            "https://cryptologos.cc/logos/bnb-bnb-logo.svg?v=022";
           NFTList.push(metadata);
         }
         // -----------X----------//
@@ -205,6 +240,8 @@ const Profile = () => {
           metadata.chainId = "80001";
           metadata.uri = tokenUri;
           metadata.nftContractAddress = POLY_MINTED;
+          metadata.chainlogo =
+            "https://cryptologos.cc/logos/polygon-matic-logo.svg?v=022";
           NFTList.push(metadata);
         }
         let POLY_ETH_NFTcontract = new ethers.Contract(
@@ -220,6 +257,8 @@ const Profile = () => {
           metadata.chainId = "80001";
           metadata.uri = tokenUri;
           metadata.nftContractAddress = POLY_ETH_PEGGED;
+          metadata.chainlogo =
+            "https://cryptologos.cc/logos/polygon-matic-logo.svg?v=022";
           NFTList.push(metadata);
         }
         let POLY_BSC_NFTcontract = new ethers.Contract(
@@ -235,6 +274,8 @@ const Profile = () => {
           metadata.chainId = "80001";
           metadata.uri = tokenUri;
           metadata.nftContractAddress = POLY_BSC_PEGGED;
+          metadata.chainlogo =
+            "https://cryptologos.cc/logos/polygon-matic-logo.svg?v=022";
           NFTList.push(metadata);
         }
 

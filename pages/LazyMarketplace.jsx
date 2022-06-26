@@ -26,8 +26,11 @@ const client = new faunadb.Client({
   secret: "fnAEpgv5JuACSfwsB64X-MjaKKApGX9EQZ05sKfJ",
 });
 
-const ExplorePage = () => {
-  const { provider, walletAddress, balance } = useMetamask();
+const LazyMarketplace = () => {
+  const { provider, walletAddress, balance, connectMetamask } = useMetamask();
+  React.useEffect(() => {
+    connectMetamask();
+  }, []);
   const [signer, setSigner] = useState(null);
 
   const [listedNFTs, setListedNFTs] = useState(null);
@@ -95,4 +98,4 @@ const ExplorePage = () => {
   );
 };
 
-export default ExplorePage;
+export default LazyMarketplace;

@@ -29,9 +29,9 @@ const Navbar = () => {
               Home
             </Button>
           </a>
-          <a href="../../ExplorePage">
+          <a href="../../LazyMarketplace">
             <Button variant={"ghost"} colorscheme={"grey"}>
-              Explore
+              Lazy Marketplace
             </Button>
           </a>
           <Button variant={"ghost"} colorscheme={"grey"}>

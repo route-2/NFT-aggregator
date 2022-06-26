@@ -23,11 +23,13 @@ import {
   ModalBody,
   ModalCloseButton,
   Hstack,
+  useToast,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { ethers } from "ethers";
 import { useMetamask } from "./api/components/context/metamsk.context";
 import { ABI } from "./LazyNFT.js";
+import { MARKETPLACE_ABI } from "./MarketplaceABI";
 import { useDisclosure } from "@chakra-ui/react";
 import { BRDIGE_ABI } from "./CrossChainNFTBridge.js";
 import { LazyMinter } from "./CreateVoucher.js";
@@ -41,6 +43,7 @@ const client = new faunadb.Client({
 function ItemNFTCard({ key, singlenft }) {
   console.log("ITEM NFT details", singlenft);
   const ethValue = ethers.utils.formatEther(singlenft.rt);
+
   //   const refId = singlenft.ref.value.id;
   //   singlenft = singlenft.data.metadata;
   // const { owner, name, description, collection, uri } = singlenft;
@@ -69,20 +72,22 @@ function ItemNFTCard({ key, singlenft }) {
     BRDIGE_ABI,
     PolygonProvider
   );
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const { provider, walletAddress, balance, chain } = useMetamask();
+  const toast = useToast();
   const [swapTo, setSwapTo] = useState("");
   const [swapFrom, setSwapFrom] = useState("");
   const [buyON, setBuyOn] = useState("4");
   const [moveTo, setMoveTo] = useState("4");
-  const[nftLogo,setNftLogo]=useState("")
   const [signer, setSigner] = useState(null);
   const [contract, setContract] = useState(null);
   const [bridgeContract, setBridgeContract] = useState(null);
+  const [nftMarketplaceContract, setNftMarketplace] = useState(null);
   const [isLoading, setLoading] = useState(false);
   const [chainString, setChainString] = useState("");
   const [nativeCrypto, setNativeCrypto] = useState("");
   const [salePrice, setSalePrice] = useState("");
+  const [tokenIDName, setTokenName] = useState("");
 
   const moveHandler = async () => {
     if (walletAddress) {
@@ -115,14 +120,94 @@ function ItemNFTCard({ key, singlenft }) {
     }
   };
 
+  const listItem = async () => {
+    if (walletAddress) {
+      console.log("Chain", chain.toString());
+      console.log("NFT Contract Address", singlenft.nftContractAddress);
+      console.log("Move to chain", moveTo);
+      console.log("Token ID", singlenft.id);
+
+      if (chain?.toString() === singlenft.chainId) {
+        const isApprovedForAll = await contract.isApprovedForAll(
+          walletAddress,
+          nftMarketplaceContract.address
+        );
+        console.log("Approved", isApprovedForAll);
+        if (!isApprovedForAll) {
+          const txReceipt = await (
+            await contract.setApprovalForAll(
+              nftMarketplaceContract.address,
+              true
+            )
+          ).wait();
+          console.log("approve tx", txReceipt.status);
+          console.log("approve txReceipt", txReceipt);
+        }
+        const listPrice = ethers.utils.parseEther(salePrice).toString();
+        const txReceipt = await (
+          await nftMarketplaceContract.createMarketItem(
+            singlenft.nftContractAddress,
+            singlenft.id,
+            listPrice
+          )
+        ).wait();
+        console.log("tx", txReceipt.status);
+        console.log("txReceipt", txReceipt);
+        if (txReceipt.status === 1) {
+          const marketplaceSaleId = txReceipt.events[2].args[0];
+          console.log("marketplaceSaleId", marketplaceSaleId.toString());
+          var metadata = singlenft;
+          metadata.listedPrice = listPrice;
+          metadata.marketplaceSaleId = marketplaceSaleId.toString();
+          metadata.owner = walletAddress;
+          try {
+            console.log(chain?.toString());
+            const data = await client.query(
+              q.Create(q.Collection("marketplace_nfts"), {
+                data: {
+                  metadata,
+                },
+              })
+            );
+            console.log(data);
+          } catch (error) {
+            console.error(error);
+          }
+          toast({
+            title: ` WOOHOO! your ${tokenIDName} NFT is listed for sale`,
+            variant: "subtle",
+            isClosable: true,
+          });
+        }
+      } else {
+        alert(
+          `Please switch your metamask network to ${chainString} to List this NFT for Sale`
+        );
+      }
+    } else {
+      alert(
+        `Please connect your metamask wallet to ${chainString} to Cross Chain this NFT`
+      );
+    }
+  };
+
   React.useEffect(() => {
     const fetchData = async () => {
       if (walletAddress) {
+        const tokenNameID = singlenft.name + "#" + singlenft.id;
+        console.log("tokenNameID", tokenNameID);
+        setTokenName(tokenNameID);
         const signer = provider?.getSigner();
         console.log(walletAddress, chain.toString());
         let marketplace;
         let bridgeContract;
+        let nftMarketplace;
         if (chain?.toString() == "4") {
+          nftMarketplace = new ethers.Contract(
+            "0x90D3e58DbC2D33a05CE07F2092880E5142b05309",
+            MARKETPLACE_ABI,
+            signer
+          );
           marketplace = new ethers.Contract(
             "0xe466f8671fcff36a910fa75fa0713b3172df359b",
             ABI,
@@ -134,6 +219,11 @@ function ItemNFTCard({ key, singlenft }) {
             signer
           );
         } else if (chain?.toString() == "97") {
+          nftMarketplace = new ethers.Contract(
+            "0xf5fdB7284614D94f4b0Ecc207E03689Ec80B9D4C",
+            MARKETPLACE_ABI,
+            signer
+          );
           marketplace = new ethers.Contract(
             "0x6cd7fE9D0f79845981A4C138E52c4ff3Ae011616",
             ABI,
@@ -145,6 +235,11 @@ function ItemNFTCard({ key, singlenft }) {
             signer
           );
         } else {
+          nftMarketplace = new ethers.Contract(
+            "0x587aE333EEc2e1FF0EB835CFC5F5579C1250ba1E",
+            MARKETPLACE_ABI,
+            signer
+          );
           marketplace = new ethers.Contract(
             "0x85f01C6D86fa1aBe4b0E55BC9e43396EE1cfbb01",
             ABI,
@@ -160,21 +255,19 @@ function ItemNFTCard({ key, singlenft }) {
         if (singlenft.chainId === "4") {
           chainString = "Rinkbey Testnet";
           setNativeCrypto("ETH");
-          setNftLogo("https://cryptologos.cc/logos/ethereum-eth-logo.svg?v=022")
         } else if (singlenft.chainId === "97") {
           chainString = "Binance Smart Chain Testnet";
           setNativeCrypto("BNB");
-          setNftLogo("https://cryptologos.cc/logos/bnb-bnb-logo.svg?v=022")
         } else {
           chainString = "Mumbai Polygon Testnet";
           setNativeCrypto("MATIC");
-          setNftLogo("https://cryptologos.cc/logos/polygon-matic-logo.svg?v=022")
         }
         setChainString(chainString);
         console.log("Bridge Contract", bridgeContract);
         console.log(bridgeContract.address);
         setContract(marketplace);
         setBridgeContract(bridgeContract);
+        setNftMarketplace(nftMarketplace);
         setLoading(false);
         setSigner(signer);
       }
@@ -248,44 +341,43 @@ function ItemNFTCard({ key, singlenft }) {
             src={singlenft.image}
           />
         </Box>
-
-        <Text
-          pt={"10px"}
+        <Heading
+          pt={"8px"}
           textAlign={"center"}
-          color={"purple.500"}
-          fontSize={"sm"}
-          textTransform={"uppercase"}
+          fontSize={"2xl"}
+          color={"black"}
+          fontFamily={"body"}
+          fontWeight={500}
         >
-          {singlenft.collection}
-        </Text>
+          {tokenIDName}
+        </Heading>
+
         <Heading
           pt={"5px"}
           textAlign={"center"}
           fontSize={"2xl"}
-          color={"purple.500"}
+          color={"darkblue"}
           fontFamily={"body"}
           fontWeight={500}
         >
-          {singlenft.name}
+          {singlenft.description}
         </Heading>
-       <Flex justifyContent={'center'}> 
-        <Text
-          pt={"5px"}
-          textAlign={"center"}
-          fontWeight={800}
-          fontSize={"xl"}
-          color={"purple.500"}
-        >
-          {ethValue}
-           {/* {nativeCrypto}  */}
-        </Text>
-        <Image w={'15px'} ml={'10px'} src={nftLogo}/>
+        <Flex justifyContent={"center"}>
+          <Text
+            pt={"5px"}
+            textAlign={"center"}
+            fontWeight={800}
+            fontSize={"xl"}
+            color={"purple.500"}
+          >
+            {ethValue}
+            {/* {nativeCrypto}  */}
+          </Text>
+          <Image w={"15px"} ml={"10px"} src={singlenft.chainlogo} />
         </Flex>
-        
-        
 
         <Center>
-          <Button mt={'6'} mr={"5"} bg={"purple.800"} onClick={moveHandler}>
+          <Button mt={"6"} mr={"5"} bg={"purple.800"} onClick={moveHandler}>
             {" "}
             <Text color={"white"}> Cross chain NFT to </Text>{" "}
           </Button>
@@ -309,34 +401,37 @@ function ItemNFTCard({ key, singlenft }) {
             <option value="97"> BSC </option>
           </Select>
         </Center>
-        <Center>
+        {/* <Center>
           <Button mt={"5%"} bg={"purple.800"}>
             {" "}
             <Text color={"white"}> Convert to Liquid NFT </Text>{" "}
           </Button>
-        </Center>
+        </Center> */}
         <Center>
-          <Button mr={'5'} onClick={onOpen} width={'150px'} mt={"4"} bg={"purple.800"}>
+          <Button
+            mr={"5"}
+            // onClick={onOpen}
+            onClick={listItem}
+            width={"150px"}
+            mt={"4"}
+            bg={"purple.800"}
+          >
             {" "}
-            <Text color={"white"} > List for Sale </Text>{" "}
+            <Text color={"white"}> List for Sale </Text>{" "}
           </Button>
           <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader> Cross Chained your NFT ;) </ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-           NFT sent from ETH to Polygon
-          </ModalBody>
-
-          
-        </ModalContent>
-      </Modal>
+            <ModalOverlay />
+            <ModalContent>
+              <ModalHeader> Cross Chained your NFT ;) </ModalHeader>
+              <ModalCloseButton />
+              <ModalBody>NFT sent from ETH to Polygon</ModalBody>
+            </ModalContent>
+          </Modal>
           <Input
             id="first-name"
             placeholder="Price of the NFT"
             color={"black"}
-            mt={'4'}
+            mt={"4"}
             onChange={(e) => setSalePrice(e.target.value)}
           />
         </Center>

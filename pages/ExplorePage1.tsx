@@ -15,7 +15,7 @@ import { Icon } from "@chakra-ui/react";
 import { useMetamask } from "./api/components/context/metamsk.context";
 import Navbar from "./api/components/Navbar";
 
-const ExplorePage = () => {
+const LazyMarketplace = () => {
   const { provider, walletAddress, balance } = useMetamask();
 
   return (
@@ -108,4 +108,4 @@ const ExplorePage = () => {
   );
 };
 
-export default ExplorePage;
+export default LazyMarketplace;

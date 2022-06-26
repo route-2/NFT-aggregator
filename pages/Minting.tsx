@@ -25,7 +25,7 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
-} from '@chakra-ui/react'
+} from "@chakra-ui/react";
 import { useToast } from "@chakra-ui/react";
 import * as React from "react";
 import { ReactNode, useRef } from "react";
@@ -37,8 +37,8 @@ import { FiFile } from "react-icons/fi";
 import { Row, Form, Spinner } from "react-bootstrap";
 import { useForm, UseFormRegisterReturn } from "react-hook-form";
 import { create as ipfsHttpClient } from "ipfs-http-client";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { LazyMinter } from "./CreateVoucher.js";
 import { ABI } from "./LazyNFT.js";
 import { useMetamask } from "./api/components/context/metamsk.context";
@@ -54,10 +54,15 @@ const fclient = new faunadb.Client({
 const client = ipfsHttpClient("https://ipfs.infura.io:5001/api/v0");
 
 const Mint = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const variants = [ 'subtle']
-  const { provider, chain, walletAddress, balance } = useMetamask();
-  const toast = useToast()
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const variants = ["subtle"];
+  const { provider, chain, walletAddress, balance, connectMetamask } =
+    useMetamask();
+  React.useEffect(() => {
+    connectMetamask();
+  }, []);
+
+  const toast = useToast();
   const [image, setImage] = useState("");
   const [price, setPrice] = useState(null);
   const [id, setid] = useState(0);
@@ -109,11 +114,11 @@ const Mint = () => {
     // toast("Woohoo your NFT is created!");
     toast({
       title: ` WOOHOO your nft is created`,
-      variant: 'subtle',
+      variant: "subtle",
       isClosable: true,
-    })
+    });
   };
- 
+
   const createNFT = async () => {
     if (!image || !price || !name || !description) {
       return;
@@ -225,7 +230,7 @@ const Mint = () => {
           bgGradient="linear(to-br, #1F0942, #000000)"
           wrap={"wrap"}
         >
-          <Flex width={"100%"} textAlign={"center"} justifyContent={'center'}>
+          <Flex width={"100%"} textAlign={"center"} justifyContent={"center"}>
             <Box
               width={"50%"}
               mt={"10%"}
@@ -238,76 +243,76 @@ const Mint = () => {
             >
               <form onSubmit={submitFormHandler}>
                 <FormControl isRequired>
-                  <FormLabel htmlFor="first-name" color={'white'}>Name :</FormLabel>
+                  <FormLabel htmlFor="first-name" color={"white"}>
+                    Name :
+                  </FormLabel>
                   <Input
-                  mt={'10px'}
+                    mt={"10px"}
                     id="first-name"
                     placeholder="Name your NFT "
                     size="sm"
-                    color={'white'}
+                    color={"white"}
                     onChange={setNameHandler}
-                    borderRadius={'12px'}
+                    borderRadius={"12px"}
                   />
-                  <FormLabel mt={'10px'} color={'white'} htmlFor="first-name">Collection :</FormLabel>
+                  <FormLabel mt={"10px"} color={"white"} htmlFor="first-name">
+                    Collection :
+                  </FormLabel>
                   <Input
-                  
                     id="first-name"
                     placeholder="Name your Collection"
                     size="sm"
                     onChange={setCollectionHandler}
-                    borderRadius={'12px'}
-                    color={'white'}
+                    borderRadius={"12px"}
+                    color={"white"}
                   />
-                  <FormLabel mt={'10px'} color={'white'} htmlFor="first-name">Description :</FormLabel>
+                  <FormLabel mt={"10px"} color={"white"} htmlFor="first-name">
+                    Description :
+                  </FormLabel>
                   <Input
                     id="first-name"
                     placeholder="Description of your NFT "
                     size="sm"
-                    borderRadius={'12px'}
-                    color={'white'}
+                    borderRadius={"12px"}
+                    color={"white"}
                     onChange={setDescriptionHandler}
                   />
-                  <FormLabel mt={'10px'} color={'white'} htmlFor="first-name">Price :</FormLabel>
+                  <FormLabel mt={"10px"} color={"white"} htmlFor="first-name">
+                    Price :
+                  </FormLabel>
                   <Input
                     id="first-name"
                     placeholder="Price at which you want to sell your NFT "
                     size="sm"
                     onChange={setPriceHandler}
-                    color={'white'}
-                    borderRadius={'12px'}
+                    color={"white"}
+                    borderRadius={"12px"}
                   />
-                  <FormLabel mt={'10px'} color={'white'}>{"File input :"}</FormLabel>
+                  <FormLabel mt={"10px"} color={"white"}>
+                    {"File input :"}
+                  </FormLabel>
 
                   <Form.Control
                     type="file"
                     required
                     name="file"
-                    color={'white'}
+                    color={"white"}
                     onChange={uploadToIPFS}
-                    
                   />
                 </FormControl>
-                <div> 
-
-                {/* <Button mt={'20px'}  variant='ghost' color={"white"} onClick={submitFormHandler}> Submit</Button>
+                <div>
+                  {/* <Button mt={'20px'}  variant='ghost' color={"white"} onClick={submitFormHandler}> Submit</Button>
                
                 <ToastContainer /> */}
-                 <Center> 
-                 <Wrap>
-      
-        <WrapItem >
-          
-          <Button
-          mt={'10px'}
-            onClick={submitFormHandler }
-          >
-            Submit 
-          </Button>
-         
-        </WrapItem>
-      
-    </Wrap>
-    </Center>
+                  <Center>
+                    <Wrap>
+                      <WrapItem>
+                        <Button mt={"10px"} onClick={submitFormHandler}>
+                          Submit
+                        </Button>
+                      </WrapItem>
+                    </Wrap>
+                  </Center>
                 </div>
               </form>
             </Box>
