@@ -25,16 +25,16 @@ const Navbar = () => {
       >
         <ButtonGroup>
           <a href="../../Homepage">
-            <Button variant={"ghost"} colorscheme={"grey"}>
+            <Button variant={"ghost"} colorScheme={"grey"}>
               Home
             </Button>
           </a>
           <a href="../../LazyMarketplace">
-            <Button variant={"ghost"} colorscheme={"grey"}>
+            <Button variant={"ghost"} colorScheme={"grey"}>
               Lazy Marketplace
             </Button>
           </a>
-          <Button variant={"ghost"} colorscheme={"grey"}>
+          <Button variant={"ghost"} colorScheme={"grey"}>
             Create
           </Button>
         </ButtonGroup>

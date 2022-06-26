@@ -45,7 +45,7 @@ const ConnectedModal = () => {
           </ModalBody>
 
           <ModalFooter>
-            <Button colorscheme="blue" mr={3} onClick={() => killSession()}>
+            <Button colorScheme="blue" mr={3} onClick={() => killSession()}>
               Disconnect Wallet
             </Button>
           </ModalFooter>
