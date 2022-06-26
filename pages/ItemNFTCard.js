@@ -49,7 +49,7 @@ function ItemNFTCard({ key, singlenft }) {
   // const { owner, name, description, collection, uri } = singlenft;
 
   let ETHttpProvider = new ethers.providers.JsonRpcProvider(
-    "https://rinkeby.infura.io/v3/e63e2bf7da29499c99a7560a7a4441b7"
+    "https://rinkeby.infura.io/v3/5ddd51a644fb4366bf26895ff5a6afbf"
   );
   let PolygonProvider = new ethers.providers.JsonRpcProvider(
     "https://speedy-nodes-nyc.moralis.io/694753c7969c59c42f2dea1b/polygon/mumbai"
@@ -95,6 +95,20 @@ function ItemNFTCard({ key, singlenft }) {
       console.log("NFT Contract Address", singlenft.nftContractAddress);
       console.log("Move to chain", moveTo);
       console.log("Token ID", singlenft.id);
+      if (chain.toString() === "4") {
+        setSwapFrom("RINKBEY");
+      } else if (chain.toString() === "97") {
+        setSwapFrom("BSC Testnet");
+      } else {
+        setSwapFrom("Mumbai Testnet");
+      }
+      if (moveTo === "4") {
+        setSwapTo("Rinkbey Testnet");
+      } else if (moveTo === "97") {
+        setSwapTo("BSC Testnet");
+      } else {
+        setSwapTo("Mumbai Testnet");
+      }
 
       if (chain?.toString() === singlenft.chainId) {
         const txReceipt = await (
@@ -278,14 +292,17 @@ function ItemNFTCard({ key, singlenft }) {
   React.useEffect(() => {
     const ETHListener = (tokenID, sender, tokenAddress) => {
       console.log("ETH WITHDRAW", tokenID.toString(), sender, tokenAddress);
+      onOpen();
     };
 
     const BSCListener = (tokenID, sender, tokenAddress) => {
       console.log("BSC WITHDRAW", tokenID.toString(), sender, tokenAddress);
+      onOpen();
     };
 
     const POLYListener = (tokenID, sender, tokenAddress) => {
       console.log("POLY WITHDRAW", tokenID.toString(), sender, tokenAddress);
+      onOpen();
     };
     // adding listeners everytime props.x changes
     ETHbridgeContract.on("WITHDRAW", ETHListener);
@@ -422,9 +439,11 @@ function ItemNFTCard({ key, singlenft }) {
           <Modal isOpen={isOpen} onClose={onClose}>
             <ModalOverlay />
             <ModalContent>
-              <ModalHeader> Cross Chained your NFT ;) </ModalHeader>
+              <ModalHeader> You Cross Chained your NFT </ModalHeader>
               <ModalCloseButton />
-              <ModalBody>NFT sent from ETH to Polygon</ModalBody>
+              <ModalBody>
+                {tokenIDName} NFT moved from {swapFrom} to {swapTo}
+              </ModalBody>
             </ModalContent>
           </Modal>
           <Input

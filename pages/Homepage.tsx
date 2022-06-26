@@ -48,17 +48,6 @@ const Homepage = () => {
           padding={"20px"}
         >
           <Link
-            href={"./Profile"}
-            pl={"70px"}
-            pr={"60px"}
-            variant={"unstyled"}
-            colorscheme={"purple"}
-            color={"white"}
-          >
-            Profile
-          </Link>
-
-          <Link
             href="./LazyMarketplace"
             pl={"70px"}
             pr={"60px"}
@@ -87,6 +76,16 @@ const Homepage = () => {
             color={"white"}
           >
             Create NFT
+          </Link>
+          <Link
+            href={"./Profile"}
+            pl={"70px"}
+            pr={"60px"}
+            variant={"unstyled"}
+            colorscheme={"purple"}
+            color={"white"}
+          >
+            Profile
           </Link>
 
           <Box pl={"70px"} pr={"60px"}>

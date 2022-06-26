@@ -58,7 +58,7 @@ const Profile = () => {
   }, []);
 
   let ETHttpProvider = new ethers.providers.JsonRpcProvider(
-    "https://rinkeby.infura.io/v3/e63e2bf7da29499c99a7560a7a4441b7"
+    "https://rinkeby.infura.io/v3/5ddd51a644fb4366bf26895ff5a6afbf"
   );
   let PolygonProvider = new ethers.providers.JsonRpcProvider(
     "https://speedy-nodes-nyc.moralis.io/694753c7969c59c42f2dea1b/polygon/mumbai"
