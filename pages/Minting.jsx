@@ -51,7 +51,8 @@ const q = faunadb.query;
 const fclient = new faunadb.Client({
   secret: "fnAEpgv5JuACSfwsB64X-MjaKKApGX9EQZ05sKfJ",
 });
-const client = ipfsHttpClient("https://ipfs.infura.io:5001/api/v0");
+const url = "https://ipfs.infura.io:5001/api/v0";
+const client = ipfsHttpClient(url);
 
 const Mint = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -78,19 +79,15 @@ const Mint = () => {
   const [contract, setContract] = useState(undefined);
   const [signer, setSigner] = useState(null);
 
-  const setNameHandler = (event: { target: { value: any } }) =>
-    setName(event.target.value);
+  const setNameHandler = (event) => setName(event.target.value);
 
-  const setDescriptionHandler = (event: { target: { value: any } }) =>
-    setDescription(event.target.value);
+  const setDescriptionHandler = (event) => setDescription(event.target.value);
 
-  const setPriceHandler = (event: { target: { value: any } }) =>
-    setPrice(event.target.value);
+  const setPriceHandler = (event) => setPrice(event.target.value);
 
-  const setCollectionHandler = (event: { target: { value: any } }) =>
-    setCollection(event.target.value);
+  const setCollectionHandler = (event) => setCollection(event.target.value);
 
-  const uploadToIPFS = async (event: any) => {
+  const uploadToIPFS = async (event) => {
     event.preventDefault();
     if (walletAddress) {
       setSa(walletAddress);
@@ -108,7 +105,7 @@ const Mint = () => {
       }
     }
   };
-  const submitFormHandler = async (event: { preventDefault: () => void }) => {
+  const submitFormHandler = async (event) => {
     event.preventDefault();
     await createNFT();
     // toast("Woohoo your NFT is created!");
@@ -145,7 +142,7 @@ const Mint = () => {
         description
       );
       setVoucher(voucher);
-      var metadata = voucher as any;
+      var metadata = voucher;
       metadata.owner = walletAddress;
       metadata.chainId = chain?.toString();
       metadata.image = image;

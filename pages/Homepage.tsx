@@ -100,11 +100,11 @@ const Homepage = () => {
         </Flex>
 
         <Flex flexDirection={"row"} height={"150vh"} wrap={"wrap"}>
-          <Flex width={"50%"}>
+          <Flex width={"40%"}>
             <Text
               bgGradient="linear(to-l, purple.800, purple.200)"
               bgClip="text"
-              fontSize="6xl"
+              fontSize="5xl"
               fontWeight="extrabold"
               pl={"100px"}
               pt={"200px"}

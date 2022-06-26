@@ -14,7 +14,6 @@ import { useMetamask } from "./api/components/context/metamsk.context";
 import ConnectedModal from "./api/components/ConnectedModal";
 import { ButtonGroup } from "@chakra-ui/react";
 import { BeatLoader } from "react-spinners";
-import LazyMarketplace from "./LazyMarketplace";
 const Launch = () => {
   const { isWalletConnected, walletAddress, chain, currentWallet } =
     useMetamask();
@@ -28,16 +27,16 @@ const Launch = () => {
         }
         backgroundRepeat={"no-repeat"}
         backgroundSize={"cover"}
-        width={"100vw"}
-        height={"150vh"}
+        width={"120vw"}
+        height={"200vh"}
         flexDirection={"column"}
       >
         <Flex flexDirection={"row"} height={"150vh"} wrap={"wrap"}>
-          <Flex width={"50%"}>
+          <Flex width={"30%"}>
             <Text
               bgGradient="linear(to-l, purple.800, purple.200)"
               bgClip="text"
-              fontSize="6xl"
+              fontSize="5xl"
               fontWeight="extrabold"
               pl={"100px"}
               pt={"200px"}

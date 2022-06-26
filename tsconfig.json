@@ -20,7 +20,9 @@
     "**/*.ts",
     "**/*.tsx",
     "pages/api/components/PostList.jsx",
-    "pages/LazyMarketplace.jsx"
+    "pages/LazyMarketplace.jsx",
+    "pages/NFTMarketplace.jsx",
+    "pages/Minting.jsx"
   ],
   "exclude": ["node_modules"]
 }

@@ -1,25 +1,10 @@
-import {
-  Box,
-  Divider,
-  Flex,
-  Button,
-  Image,
-  Input,
-  Text,
-  Link,
-  useColorModeValue,
-  Heading,
-} from "@chakra-ui/react";
+import { Box, Flex, Link } from "@chakra-ui/react";
 import * as React from "react";
 import SearchBar from "./Search";
-import { Icon } from "@chakra-ui/react";
 import { useState } from "react";
-import Nftdatalist from "./Nftdatalist.json";
-import Card from "./NftCard";
 import MarketplaceCard from "./MarketplaceCard";
 
 import { useMetamask } from "./api/components/context/metamsk.context";
-import Navbar from "./api/components/Navbar";
 const faunadb = require("faunadb");
 
 const q = faunadb.query;
@@ -34,7 +19,7 @@ const LazyMarketplace = () => {
   }, []);
   const [signer, setSigner] = useState(null);
 
-  const [listedNFTs, setListedNFTs] = useState(null);
+  const [listedNFTs, setListedNFTs] = useState([]);
 
   React.useEffect(() => {
     const fetchData = async () => {
