@@ -52,7 +52,7 @@ const Homepage = () => {
             pl={"70px"}
             pr={"60px"}
             variant={"unstyled"}
-            colorscheme={"purple"}
+            colorScheme={"purple"}
             color={"white"}
           >
             Lazy Marketplace
@@ -62,7 +62,7 @@ const Homepage = () => {
             pl={"70px"}
             pr={"60px"}
             variant={"unstyled"}
-            colorscheme={"purple"}
+            colorScheme={"purple"}
             color={"white"}
           >
             NFT MarketPlace
@@ -72,7 +72,7 @@ const Homepage = () => {
             pl={"70px"}
             pr={"60px"}
             variant={"unstyled"}
-            colorscheme={"purple"}
+            colorScheme={"purple"}
             color={"white"}
           >
             Create NFT
@@ -82,7 +82,7 @@ const Homepage = () => {
             pl={"70px"}
             pr={"60px"}
             variant={"unstyled"}
-            colorscheme={"purple"}
+            colorScheme={"purple"}
             color={"white"}
           >
             Profile
