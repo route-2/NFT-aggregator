@@ -14,7 +14,6 @@ import * as React from "react";
 import SearchBar from "./Search";
 import { Icon } from "@chakra-ui/react";
 import { useState } from "react";
-import Nftdatalist from "./Nftdatalist.json";
 import Card from "./NftCard";
 
 import { useMetamask } from "./api/components/context/metamsk.context";

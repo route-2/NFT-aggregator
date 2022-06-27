@@ -19,9 +19,9 @@ import {
 import { useState } from "react";
 import { ethers } from "ethers";
 import { useMetamask } from "./api/components/context/metamsk.context";
-import { ABI } from "./LazyNFT.js";
-import { MARKETPLACE_ABI } from "./MarketplaceABI.js";
-import { BRDIGE_ABI } from "./CrossChainNFTBridge";
+import { ABI } from "./constansts/LazyNFT.js";
+import { MARKETPLACE_ABI } from "./constansts/MarketplaceABI.js";
+import { BRDIGE_ABI } from "./constansts/CrossChainNFTBridge";
 const faunadb = require("faunadb");
 
 const q = faunadb.query;

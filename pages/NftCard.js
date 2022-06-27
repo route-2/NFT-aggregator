@@ -19,7 +19,7 @@ import {
 import { useState } from "react";
 import { ethers } from "ethers";
 import { useMetamask } from "./api/components/context/metamsk.context";
-import { ABI } from "./LazyNFT.js";
+import { ABI } from "./constansts/LazyNFT.js";
 const faunadb = require("faunadb");
 
 const q = faunadb.query;

@@ -28,11 +28,11 @@ import {
 import { useState } from "react";
 import { ethers } from "ethers";
 import { useMetamask } from "./api/components/context/metamsk.context";
-import { ABI } from "./LazyNFT.js";
-import { MARKETPLACE_ABI } from "./MarketplaceABI";
+import { ABI } from "./constansts/LazyNFT.js";
+import { MARKETPLACE_ABI } from "./constansts/MarketplaceABI";
 import { useDisclosure } from "@chakra-ui/react";
-import { BRDIGE_ABI } from "./CrossChainNFTBridge.js";
-import { LazyMinter } from "./CreateVoucher.js";
+import { BRDIGE_ABI } from "./constansts/CrossChainNFTBridge.js";
+import { LazyMinter } from "./constansts/CreateVoucher.js";
 const faunadb = require("faunadb");
 
 const q = faunadb.query;

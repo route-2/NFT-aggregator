@@ -29,14 +29,13 @@ import { Icon } from "@chakra-ui/react";
 import Card from "./NftCard";
 import ListedNFTCard from "./ListedNFTCard";
 import ItemNFTCard from "./ItemNFTCard";
-import Nftdatalist from "./Nftdatalist.json";
 import { useState } from "react";
 
 import { useMetamask } from "./api/components/context/metamsk.context";
 import Navbar from "./api/components/Navbar";
 import axios from "axios";
 import { ethers } from "ethers";
-import { ABI } from "./LazyNFT.js";
+import { ABI } from "./constansts/LazyNFT.js";
 
 const faunadb = require("faunadb");
 
